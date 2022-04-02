@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
 
-class PacientInfoScreen extends StatefulWidget {
-  const PacientInfoScreen({Key? key}) : super(key: key);
+class AnalysisInfoScreen extends StatefulWidget {
+  const AnalysisInfoScreen({Key? key}) : super(key: key);
 
   @override
-  _PacientInfoScreenState createState() => _PacientInfoScreenState();
+  _AnalysisInfoScreen createState() => _AnalysisInfoScreen();
 }
 
-class _PacientInfoScreenState extends State<PacientInfoScreen> {
+class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: const Color(0xFFA675A1),
-        title: const Text('Informações Paciente'),
+        title: const Text('Informações Análise'),
       ),
       body: Center(
         child: Column(
@@ -26,7 +26,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
               width: 400,
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: const Text(
-                'Entre com as informações do paciente.',
+                'Entre com as informações de análise.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Roboto',
@@ -39,13 +39,13 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
             const SizedBox(height: 40),
             Column(
               children: const [
-                InputFormWidget(text: 'Nome'),
-                InputFormWidget(text: 'Idade'),
-                InputFormWidget(text: 'Email'),
+                InputFormWidget(text: 'Tipo de Pele'),
+                InputFormWidget(text: 'Fototipo'),
+                InputFormWidget(text: 'Informações Adicionais'),
                 SizedBox(
                   height: 40,
                 ),
-                ButtonWidget(text: 'SALVAR', route: '/analysis_info'),
+                ButtonWidget(text: 'CARREGAR IMAGEM', route: '/analysis'),
               ],
             )
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wood_analyzer/screens/analysis_info_screen.dart';
 import 'package:wood_analyzer/screens/report_screen.dart';
 import 'package:wood_analyzer/screens/home_screen.dart';
 import 'package:wood_analyzer/screens/pacient_info_screen.dart';
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: '/pacient_info',
               page: () => const PacientInfoScreen(),
+            ),
+            GetPage(
+              name: '/analysis_info',
+              page: () => const AnalysisInfoScreen(),
             ),
             GetPage(
               name: '/analysis',
