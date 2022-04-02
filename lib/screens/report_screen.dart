@@ -28,7 +28,7 @@ class _ReportScreenState extends State<ReportScreen> {
             const SizedBox(
               height: 40,
             ),
-            Container(
+            SizedBox(
               width: 300,
               height: 300,
               child: Image.network(
