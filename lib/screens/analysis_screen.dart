@@ -3,14 +3,14 @@ import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
 import 'package:wood_analyzer/widgets/title_widget.dart';
 
-class PacientInfoScreen extends StatefulWidget {
-  const PacientInfoScreen({Key? key}) : super(key: key);
+class AnalysisScreen extends StatefulWidget {
+  const AnalysisScreen({Key? key}) : super(key: key);
 
   @override
-  _PacientInfoScreenState createState() => _PacientInfoScreenState();
+  _AnalysisScreenState createState() => _AnalysisScreenState();
 }
 
-class _PacientInfoScreenState extends State<PacientInfoScreen> {
+class _AnalysisScreenState extends State<AnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,18 +24,17 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const TitleWidget(
-              text: 'Entre com as informações do paciente.',
+              text: 'Informações da Análise',
             ),
             const SizedBox(height: 40),
             Column(
               children: const [
-                InputFormWidget(text: 'Nome'),
-                InputFormWidget(text: 'Idade'),
-                InputFormWidget(text: 'Email'),
+                InputFormWidget(text: 'Tipo de Pele'),
+                InputFormWidget(text: 'Fototipo'),
                 SizedBox(
                   height: 40,
                 ),
-                ButtonWidget(text: 'SALVAR', route: '/analysis'),
+                ButtonWidget(text: 'CARREGAR IMAGEM', route: '/report'),
               ],
             )
           ],
