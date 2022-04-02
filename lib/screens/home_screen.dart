@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/widgets/button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -63,22 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 40,
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: const Color(0xFFA675A1),
-                fixedSize: const Size(250, 50),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, 'pacient_info');
-              },
-              child: const Text(
-                'INICIAR',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            const ButtonWidget(
+              text: 'INICIAR',
+              route: 'pacient_info',
             ),
           ],
         ),

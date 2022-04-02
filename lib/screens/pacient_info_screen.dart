@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
 
 class PacientInfoScreen extends StatefulWidget {
@@ -37,30 +38,14 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
             ),
             const SizedBox(height: 40),
             Column(
-              children: [
-                const InputFormWidget(text: 'Nome'),
-                const InputFormWidget(text: 'Idade'),
-                const InputFormWidget(text: 'Email'),
-                const SizedBox(
+              children: const [
+                InputFormWidget(text: 'Nome'),
+                InputFormWidget(text: 'Idade'),
+                InputFormWidget(text: 'Email'),
+                SizedBox(
                   height: 40,
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFFA675A1),
-                    fixedSize: const Size(300, 50),
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  child: const Text(
-                    'SALVAR',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                ButtonWidget(text: 'SALVAR', route: '/')
               ],
             )
           ],
