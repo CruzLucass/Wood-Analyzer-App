@@ -45,7 +45,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                 SizedBox(
                   height: 40,
                 ),
-                ButtonWidget(text: 'SALVAR', route: '/')
+                ButtonWidget(text: 'SALVAR', route: '/'),
               ],
             )
           ],
