@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
+import 'package:wood_analyzer/widgets/text_container_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,32 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 40,
             ),
-            Container(
-              width: 250,
-              height: 200,
-              padding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              color: const Color(0xFFF7DEFF),
-              child: Column(
-                children: const [
-                  Text(
-                    'Descrição do Aplicativo',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Informações sobre como vai funcionar o aplicativo e o relatório.',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+            const TextContainerWidget(
+              title: 'Descrição do Aplicativo',
+              text:
+                  'Informações sobre como vai funcionar o aplicativo e o relatório.',
             ),
             const SizedBox(
               height: 40,
