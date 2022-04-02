@@ -38,7 +38,7 @@ class _ReportScreenState extends State<ReportScreen> {
             const SizedBox(
               height: 40,
             ),
-            TextContainerWidget(
+            const TextContainerWidget(
               title: 'Descrição do Relatório',
               text:
                   'Aqui ficará o relatório com o resultado das análises e um overview das informações adicionadas.',
