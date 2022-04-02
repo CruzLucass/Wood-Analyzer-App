@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/widgets/input_form_widget.dart';
 
 class PacientInfoScreen extends StatefulWidget {
   const PacientInfoScreen({Key? key}) : super(key: key);
@@ -37,45 +38,9 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
             const SizedBox(height: 40),
             Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  width: 300,
-                  child: Form(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Nome',
-                        fillColor: Color.fromARGB(255, 194, 146, 202),
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  width: 300,
-                  child: Form(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Idade',
-                        fillColor: Color.fromARGB(255, 194, 146, 202),
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  width: 300,
-                  child: Form(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Email',
-                        fillColor: Color.fromARGB(255, 194, 146, 202),
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
+                const InputFormWidget(text: 'Nome'),
+                const InputFormWidget(text: 'Idade'),
+                const InputFormWidget(text: 'Email'),
                 const SizedBox(
                   height: 40,
                 ),
