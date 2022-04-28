@@ -27,16 +27,19 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
               text: 'Entre com as informações do paciente.',
             ),
             const SizedBox(height: 40),
-            Column(
-              children: const [
-                InputFormWidget(text: 'Nome'),
-                InputFormWidget(text: 'Idade'),
-                InputFormWidget(text: 'Email'),
-                SizedBox(
-                  height: 40,
-                ),
-                ButtonWidget(text: 'SALVAR', route: '/analysis'),
-              ],
+            Form(
+              child: Column(
+                children: const [
+                  InputFormWidget(text: 'Nome', type: TextInputType.name),
+                  InputFormWidget(text: 'Idade', type: TextInputType.number),
+                  InputFormWidget(
+                      text: 'Email', type: TextInputType.emailAddress),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ButtonWidget(text: 'SALVAR', route: '/analysis_info'),
+                ],
+              ),
             )
           ],
         ),

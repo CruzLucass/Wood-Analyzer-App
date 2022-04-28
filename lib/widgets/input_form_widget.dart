@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class InputFormWidget extends StatelessWidget {
   final String text;
+  final TextInputType type;
 
   const InputFormWidget({
     Key? key,
     required this.text,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -13,14 +15,16 @@ class InputFormWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10),
       width: 300,
-      child: Form(
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: text,
-            fillColor: const Color.fromARGB(255, 194, 146, 202),
-            filled: true,
+      child: TextFormField(
+        decoration: InputDecoration(
+          hintText: text,
+          border: const OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 194, 146, 202), width: 1),
           ),
+          filled: true,
         ),
+        keyboardType: type,
       ),
     );
   }

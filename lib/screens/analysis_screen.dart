@@ -27,15 +27,23 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
               text: 'Informações da Análise',
             ),
             const SizedBox(height: 40),
-            Column(
-              children: const [
-                InputFormWidget(text: 'Tipo de Pele'),
-                InputFormWidget(text: 'Fototipo'),
-                SizedBox(
-                  height: 40,
-                ),
-                ButtonWidget(text: 'CARREGAR IMAGEM', route: '/report'),
-              ],
+            Form(
+              child: Column(
+                children: const [
+                  InputFormWidget(
+                    text: 'Tipo de Pele',
+                    type: TextInputType.text,
+                  ),
+                  InputFormWidget(
+                    text: 'Fototipo',
+                    type: TextInputType.text,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ButtonWidget(text: 'CARREGAR IMAGEM', route: '/report'),
+                ],
+              ),
             )
           ],
         ),
