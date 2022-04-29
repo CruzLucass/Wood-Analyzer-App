@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/screens/analysis_info_screen.dart';
 import 'package:wood_analyzer/screens/report_screen.dart';
 import 'package:wood_analyzer/screens/home_screen.dart';
@@ -17,26 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      getPages: [
-        GetPage(
-          name: '/',
-          page: () => const HomeScreen(),
-          children: [
-            GetPage(
-              name: '/pacient_info',
-              page: () => const PacientInfoScreen(),
-            ),
-            GetPage(
-              name: '/analysis_info',
-              page: () => const AnalysisInfoScreen(),
-            ),
-            GetPage(
-              name: '/report',
-              page: () => const ReportScreen(),
-            )
-          ],
-        )
-      ],
+      title: 'Wood Analyser',
+      //home: SplashScreen(),
+      initialRoute: Routes.getSplashPage(),
+      getPages: Routes.routes,
     );
   }
 }

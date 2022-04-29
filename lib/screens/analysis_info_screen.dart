@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
 
@@ -23,22 +26,27 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 400,
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: const Text(
+              width: Dimensions.width400,
+              padding: EdgeInsets.only(
+                right: Dimensions.padding20,
+                left: Dimensions.padding20,
+              ),
+              child: Text(
                 'Entre com as informações de análise.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Roboto',
-                  fontSize: 20,
+                  fontSize: Dimensions.font20,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFFA675A1),
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            SizedBox(
+              height: Dimensions.height40,
+            ),
             Column(
-              children: const [
+              children: [
                 InputFormWidget(
                   text: 'Tipo de Pele',
                   type: TextInputType.text,
@@ -52,9 +60,12 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                   type: TextInputType.text,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: Dimensions.height40,
                 ),
-                ButtonWidget(text: 'CARREGAR IMAGEM', route: '/report'),
+                ButtonWidget(
+                  text: 'CARREGAR IMAGEM',
+                  route: '/report',
+                ),
               ],
             )
           ],

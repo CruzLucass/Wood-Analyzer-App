@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 
 class TitleWidget extends StatelessWidget {
   final String text;
@@ -8,14 +9,17 @@ class TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
-      padding: const EdgeInsets.only(right: 20, left: 20),
+      width: Dimensions.width400,
+      padding: EdgeInsets.only(
+        right: Dimensions.padding20,
+        left: Dimensions.padding20,
+      ),
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: 'Roboto',
-          fontSize: 20,
+          fontSize: Dimensions.font20,
           fontWeight: FontWeight.w900,
           color: Color(0xFFA675A1),
         ),

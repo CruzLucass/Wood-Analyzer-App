@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 
 class InputFormWidget extends StatelessWidget {
   final String text;
@@ -14,13 +15,15 @@ class InputFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      width: 300,
+      width: Dimensions.width300,
       child: TextFormField(
         decoration: InputDecoration(
           hintText: text,
           border: const OutlineInputBorder(
-            borderSide:
-                BorderSide(color: Color.fromARGB(255, 194, 146, 202), width: 1),
+            borderSide: BorderSide(
+              color: Color.fromARGB(255, 194, 146, 202),
+              width: 1,
+            ),
           ),
           filled: true,
         ),

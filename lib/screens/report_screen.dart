@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/text_container_widget.dart';
 import 'package:wood_analyzer/widgets/title_widget.dart';
 
@@ -25,18 +28,18 @@ class _ReportScreenState extends State<ReportScreen> {
             const TitleWidget(
               text: 'RELATÓRIO DA ANÁLISE',
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: Dimensions.height40,
             ),
             SizedBox(
-              width: 300,
-              height: 300,
-              child: Image.network(
-                'https://static-cse.canva.com/blob/759754/IMAGE1.jpg',
+              width: Dimensions.width300,
+              height: Dimensions.height300,
+              child: Image.asset(
+                'images/logo1.jpg',
               ),
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: Dimensions.height40,
             ),
             const TextContainerWidget(
               title: 'Descrição do Relatório',

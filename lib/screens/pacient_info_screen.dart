@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
 import 'package:wood_analyzer/widgets/title_widget.dart';
@@ -26,18 +29,29 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
             const TitleWidget(
               text: 'Entre com as informações do paciente.',
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: Dimensions.height40),
             Form(
               child: Column(
-                children: const [
-                  InputFormWidget(text: 'Nome', type: TextInputType.name),
-                  InputFormWidget(text: 'Idade', type: TextInputType.number),
+                children: [
                   InputFormWidget(
-                      text: 'Email', type: TextInputType.emailAddress),
-                  SizedBox(
-                    height: 40,
+                    text: 'Nome',
+                    type: TextInputType.name,
                   ),
-                  ButtonWidget(text: 'SALVAR', route: '/analysis_info'),
+                  InputFormWidget(
+                    text: 'Idade',
+                    type: TextInputType.number,
+                  ),
+                  InputFormWidget(
+                    text: 'Email',
+                    type: TextInputType.emailAddress,
+                  ),
+                  SizedBox(
+                    height: Dimensions.height40,
+                  ),
+                  ButtonWidget(
+                    text: 'SALVAR',
+                    route: '/analysis_info',
+                  ),
                 ],
               ),
             )

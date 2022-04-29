@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
@@ -12,15 +13,18 @@ class ButtonWidget extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: const Color(0xFFA675A1),
-        fixedSize: const Size(300, 50),
+        fixedSize: Size(
+          Dimensions.width300,
+          Dimensions.height50,
+        ),
       ),
       onPressed: () {
         Navigator.pushNamed(context, route);
       },
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 20,
+        style: TextStyle(
+          fontSize: Dimensions.font20,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.bold,
         ),

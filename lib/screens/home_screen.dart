@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/text_container_widget.dart';
 
@@ -16,32 +17,29 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: const Color(0xFFA675A1),
-        title: const Text('Nome App'),
+        title: const Text('Wood Analyser'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 160,
-              width: 160,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://lojashopfisio.vtexassets.com/arquivos/ids/263706-800-800?v=637482788020630000&width=800&height=800&aspect=true'),
-                ),
+              height: Dimensions.height160,
+              width: Dimensions.width160,
+              child: Image.asset(
+                'images/logo1.jpg',
               ),
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: Dimensions.height40,
             ),
             const TextContainerWidget(
               title: 'Descrição do Aplicativo',
               text:
                   'Informações sobre como vai funcionar o aplicativo e o relatório.',
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: Dimensions.height40,
             ),
             const ButtonWidget(
               text: 'INICIAR',

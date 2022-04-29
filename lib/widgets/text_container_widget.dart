@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 
 class TextContainerWidget extends StatelessWidget {
   final String title;
@@ -13,11 +14,11 @@ class TextContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
-      height: 200,
-      padding: const EdgeInsets.only(
-        left: 15,
-        right: 15,
+      width: Dimensions.width250,
+      height: Dimensions.height200,
+      padding: EdgeInsets.only(
+        left: Dimensions.padding15,
+        right: Dimensions.padding15,
       ),
       color: const Color(0xFFF7DEFF),
       child: Column(
@@ -25,16 +26,19 @@ class TextContainerWidget extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              fontSize: Dimensions.font20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.height20),
           Text(
             text,
             textAlign: TextAlign.justify,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: TextStyle(
+              fontSize: Dimensions.font16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
