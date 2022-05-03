@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:get/get.dart';
 import 'package:wood_analyzer/screens/analysis_info_screen.dart';
 import 'package:wood_analyzer/screens/home_screen.dart';
@@ -12,11 +14,11 @@ class Routes {
   static const String analysisInfo = '/analysis_info';
   static const String report = '/report';
 
-  static String getSplashPage() => '$splashPage';
-  static String getInitial() => '$initial';
-  static String getPacientInfo() => '$pacientInfo';
-  static String getAnalysisInfo() => '$analysisInfo';
-  static String getReportPage() => '$report';
+  static String getSplashPage() => splashPage;
+  static String getInitial() => initial;
+  static String getPacientInfo() => pacientInfo;
+  static String getAnalysisInfo() => analysisInfo;
+  static String getReportPage() => report;
 
 // static String getPacientInfo(int pageId, String page) =>
 //       '$pacientInfo?pageId=$pageId&page=$page';
