@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/text_container_widget.dart';

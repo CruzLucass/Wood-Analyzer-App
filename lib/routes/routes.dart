@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:wood_analyzer/screens/analysis_info_screen.dart';
+import 'package:wood_analyzer/screens/diagnostic_image.dart';
 import 'package:wood_analyzer/screens/home_screen.dart';
 import 'package:wood_analyzer/screens/pacient_info_screen.dart';
 import 'package:wood_analyzer/screens/report_screen.dart';
@@ -13,12 +14,14 @@ class Routes {
   static const String pacientInfo = '/pacient_info';
   static const String analysisInfo = '/analysis_info';
   static const String report = '/report';
+  static const String diagnostic = '/diagnostic';
 
   static String getSplashPage() => splashPage;
   static String getInitial() => initial;
   static String getPacientInfo() => pacientInfo;
   static String getAnalysisInfo() => analysisInfo;
   static String getReportPage() => report;
+  static String getDiagnosticPage() => diagnostic;
 
 // static String getPacientInfo(int pageId, String page) =>
 //       '$pacientInfo?pageId=$pageId&page=$page';
@@ -47,6 +50,13 @@ class Routes {
         var pageId = Get.parameters['pageId'];
         var page = Get.parameters['page'];
         return AnalysisInfoScreen();
+      },
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: diagnostic,
+      page: () {
+        return DiagnosticImageScreen();
       },
       transition: Transition.fadeIn,
     ),
