@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
-import 'package:wood_analyzer/widgets/input_form_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

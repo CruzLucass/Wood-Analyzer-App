@@ -21,7 +21,7 @@ class TitleWidget extends StatelessWidget {
           fontFamily: 'Roboto',
           fontSize: Dimensions.font20,
           fontWeight: FontWeight.w900,
-          color: Color(0xFFA675A1),
+          color: const Color(0xFFA675A1),
         ),
       ),
     );

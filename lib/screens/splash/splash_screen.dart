@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     Timer(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () => Get.offNamed(
         Routes.getInitial(),
       ),

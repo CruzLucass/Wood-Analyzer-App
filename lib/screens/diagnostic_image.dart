@@ -36,7 +36,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
             height: 400,
             color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],
