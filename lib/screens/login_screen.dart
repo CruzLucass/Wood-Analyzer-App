@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 .signIn(email: _email!, password: _password!)
                                 .then((result) {
                               if (result == null) {
-                                Get.offNamed(Routes.initial);
+                                Get.offNamed(Routes.pacientInfo);
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

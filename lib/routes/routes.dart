@@ -27,7 +27,8 @@ class Routes {
   static String getPacientInfo() => pacientInfo;
   static String getAnalysisInfo() => analysisInfo;
   static String getReportPage() => report;
-  static String getDiagnosticPage() => diagnostic;
+  static String getDiagnosticPage(String imagePath) =>
+      '$diagnostic?imagepath=$imagePath';
 
 // static String getPacientInfo(int pageId, String page) =>
 //       '$pacientInfo?pageId=$pageId&page=$page';
@@ -71,7 +72,10 @@ class Routes {
     GetPage(
       name: diagnostic,
       page: () {
-        return DiagnosticImageScreen();
+        var imagePath = Get.parameters['imagepath'];
+        return DiagnosticImageScreen(
+          imagePath: imagePath!,
+        );
       },
       transition: Transition.fadeIn,
     ),

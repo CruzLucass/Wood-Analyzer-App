@@ -1,8 +1,19 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 import 'package:wood_analyzer/models/diagnostic.dart';
+import 'package:wood_analyzer/utils/app_colors.dart';
+import 'package:wood_analyzer/utils/dimensions.dart';
 
 class DiagnosticImageScreen extends StatefulWidget {
-  const DiagnosticImageScreen({Key? key}) : super(key: key);
+  final String imagePath;
+  const DiagnosticImageScreen({
+    Key? key,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   State<DiagnosticImageScreen> createState() => _DiagnosticImageScreenState();
@@ -31,44 +42,78 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Image.file(
+            File(widget.imagePath),
+          ),
           Container(
-            width: 200,
-            height: 400,
-            color: Colors.grey,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-      bottomSheet: ListView.builder(
-        itemCount: listDiagnostic.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              border: Border.symmetric(
+                horizontal: BorderSide(
+                  width: 1,
+                  color: AppColors.textColor,
+                ),
+              ),
+              color: AppColors.lilasColor,
+            ),
+            child: Center(
               child: Text(
-                'Diagnótico: ${listDiagnostic[index].name}',
+                'Selecione os diagnóticos da imagem: ',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: Dimensions.font16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
               ),
             ),
-            subtitle: Container(
-              child: Text(
-                'Cor: ${listDiagnostic[index].color}',
-              ),
-            ),
-            trailing: IconButton(
-              icon: Icon(
-                listDiagnostic[index].check
-                    ? Icons.check_box
-                    : Icons.check_box_outline_blank,
-              ),
-              onPressed: () {
-                setState(() {
-                  listDiagnostic[index].check = !listDiagnostic[index].check;
-                });
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: listDiagnostic.length,
+              physics: ClampingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      listDiagnostic[index].check =
+                          !listDiagnostic[index].check;
+                    });
+                  },
+                  child: Card(
+                    elevation: 5,
+                    child: ListTile(
+                      title: Container(
+                        child: Text(
+                          'Diagnótico: ${listDiagnostic[index].name}',
+                        ),
+                      ),
+                      subtitle: Container(
+                        child: Text(
+                          'Cor: ${listDiagnostic[index].color}',
+                        ),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          listDiagnostic[index].check
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            listDiagnostic[index].check =
+                                !listDiagnostic[index].check;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                );
               },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
