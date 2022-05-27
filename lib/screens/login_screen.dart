@@ -6,6 +6,7 @@ import 'package:wood_analyzer/auth/authentication.dart';
 import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
+import 'package:wood_analyzer/utils/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,6 +26,13 @@ class _LoginScreenState extends State<LoginScreen> {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () { 
+          Get.offNamed(Routes.initial);
+         },
+         child: const Icon(Icons.question_mark, color: AppColors.mainColor),
+         backgroundColor: Colors.white,
+      ),
       backgroundColor: AppColors.lilasColor,
       body: SingleChildScrollView(
         child: Column(
@@ -236,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ],
-        ),
+        )
       ),
     );
   }

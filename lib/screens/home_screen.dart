@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               height: Dimensions.height160,
               width: Dimensions.width160,
               child: Image.asset(
@@ -40,10 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(
               height: Dimensions.height40,
-            ),
-            const ButtonWidget(
-              text: 'INICIAR',
-              route: 'pacient_info',
             ),
           ],
         ),
