@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: Dimensions.height160,
               width: Dimensions.width160,
               child: Image.asset(
-                'images/logo1.jpg',
+                'images/logo1.png',
               ),
             ),
             SizedBox(
@@ -40,10 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(
               height: Dimensions.height40,
-            ),
-            const ButtonWidget(
-              text: 'INICIAR',
-              route: 'pacient_info',
             ),
           ],
         ),

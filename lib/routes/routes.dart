@@ -20,6 +20,7 @@ class Routes {
   static const String report = '/report';
   static const String diagnostic = '/diagnostic';
 
+
   static String getSplashPage() => splashPage;
   static String getLoginPage() => login;
   static String getSignupPage() => signup;
