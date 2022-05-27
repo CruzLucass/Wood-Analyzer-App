@@ -1,4 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wood_analyzer/routes/routes.dart';
+import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/text_container_widget.dart';
@@ -16,8 +21,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color(0xFFA675A1),
-        title: const Text('Wood Analyser'),
+        backgroundColor: AppColors.lilasColor,
+        title: const Text('Seja Bem-vindo!'),
+        leading: IconButton(
+          onPressed: () {
+            Get.offNamed(Routes.login);
+          },
+          icon: Icon(
+            Icons.chevron_left_rounded,
+            size: 30,
+          ),
+        ),
       ),
       body: Center(
         child: Column(

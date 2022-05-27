@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
           children: [
             Container(
               width: double.infinity,
-              height: 350,
+              height: 300,
               decoration: BoxDecoration(
                 color: AppColors.lilasColor,
                 borderRadius: BorderRadius.only(

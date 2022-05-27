@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
@@ -50,7 +51,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                   ),
                   ButtonWidget(
                     text: 'SALVAR',
-                    route: '/analysis_info',
+                    route: Routes.analysisInfo,
                   ),
                 ],
               ),

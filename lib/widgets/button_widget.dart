@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class ButtonWidget extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.pushNamed(context, route);
+        Get.offNamed(route);
       },
       child: Text(
         text,
