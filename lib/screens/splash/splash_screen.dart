@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(
       const Duration(seconds: 3),
       () => Get.offNamed(
-        Routes.getInitial(),
+        Routes.getLoginPage(),
       ),
     );
   }
@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
             scale: animation,
             child: Center(
               child: Image.asset(
-                'images/logo1.jpg',
+                'images/logo1.png',
                 width: 200,
               ),
             ),
