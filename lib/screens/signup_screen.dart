@@ -92,94 +92,91 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(
               height: 40,
             ),
-            SizedBox(
-              width: Dimensions.width300,
-              child: Form(
-                key: _formKey,
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Nome',
-                          labelStyle: TextStyle(color: AppColors.textColor),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Nome',
+                        labelStyle: TextStyle(color: AppColors.textColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'O nome é obrigatório';
-                          } else {
-                            name = value;
-                          }
-                          return null;
-                        },
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'O nome é obrigatório';
+                        } else {
+                          name = value;
+                        }
+                        return null;
+                      },
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          labelStyle: TextStyle(color: AppColors.textColor),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        labelStyle: TextStyle(color: AppColors.textColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'O e-mail é obrigatório';
-                          } else {
-                            email = value;
-                          }
-                          return null;
-                        },
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'O e-mail é obrigatório';
+                        } else {
+                          email = value;
+                        }
+                        return null;
+                      },
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: !_obscureText,
-                        decoration: InputDecoration(
-                          labelText: 'Senha',
-                          labelStyle: TextStyle(color: AppColors.textColor),
-                          suffixIcon: Padding(
-                            child: IconButton(
-                              icon: Icon(
-                                // Based on passwordVisible state choose the icon
-                                _obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                              onPressed: () {
-                                // Update the state i.e. toogle the state of passwordVisible variable
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: !_obscureText,
+                      decoration: InputDecoration(
+                        labelText: 'Senha',
+                        labelStyle: TextStyle(color: AppColors.textColor),
+                        suffixIcon: Padding(
+                          child: IconButton(
+                            icon: Icon(
+                              // Based on passwordVisible state choose the icon
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                             ),
-                            padding: EdgeInsets.all(5),
+                            onPressed: () {
+                              // Update the state i.e. toogle the state of passwordVisible variable
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
                           ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          padding: EdgeInsets.all(5),
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'A senha é obrigatória';
-                          } else {
-                            password = value;
-                          }
-                          return null;
-                        },
-                        onChanged: (value) => password = value,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'A senha é obrigatória';
+                        } else {
+                          password = value;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) => password = value,
                     ),
                     SizedBox(
                       height: 20,
@@ -201,7 +198,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -209,7 +206,11 @@ class _SignupScreenState extends State<SignupScreen> {
                           _formKey.currentState!.save();
 
                           Authentication()
-                              .signUp(email: email!, password: password!)
+                              .signUp(
+                            email: email!,
+                            password: password!,
+                            name: name!,
+                          )
                               .then((result) {
                             if (result == null) {
                               Get.offNamed(Routes.login);
@@ -232,7 +233,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         primary: AppColors.lilasColor,
                         fixedSize: Size(
                           Dimensions.width300,
-                          Dimensions.height40,
+                          Dimensions.height50,
                         ),
                       ),
                       child: Text(
