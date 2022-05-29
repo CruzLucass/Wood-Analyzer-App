@@ -180,8 +180,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          CollectionReference pacients =
-                              FirebaseFirestore.instance.collection('pacient');
+                          CollectionReference pacients = FirebaseFirestore.instance.collection('pacient');
 
                           await pacients.add(
                             {
@@ -206,10 +205,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       ),
                       child: Text(
                         'Salvar',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textColor),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textColor),
                       ),
                     ),
                   ],
