@@ -42,11 +42,20 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.file(
-            File(widget.imagePath),
+          Container(
+            height: Dimensions.height400,
+            child: InteractiveViewer(
+              panEnabled: true, // Set it to false
+              boundaryMargin: EdgeInsets.all(100),
+              minScale: 0.5,
+              maxScale: 2,
+              child: Image.file(
+                File(widget.imagePath),
+              ),
+            ),
           ),
           Container(
-            height: 50,
+            height: Dimensions.height50,
             decoration: BoxDecoration(
               border: Border.symmetric(
                 horizontal: BorderSide(
@@ -77,8 +86,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      listDiagnostic[index].check =
-                          !listDiagnostic[index].check;
+                      listDiagnostic[index].check = !listDiagnostic[index].check;
                     });
                   },
                   child: Card(
@@ -96,14 +104,11 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                       ),
                       trailing: IconButton(
                         icon: Icon(
-                          listDiagnostic[index].check
-                              ? Icons.check_box
-                              : Icons.check_box_outline_blank,
+                          listDiagnostic[index].check ? Icons.check_box : Icons.check_box_outline_blank,
                         ),
                         onPressed: () {
                           setState(() {
-                            listDiagnostic[index].check =
-                                !listDiagnostic[index].check;
+                            listDiagnostic[index].check = !listDiagnostic[index].check;
                           });
                         },
                       ),
