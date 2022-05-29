@@ -1,10 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:camera/camera.dart';
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:wood_analyzer/routes/routes.dart';
+import 'package:wood_analyzer/screens/diagnostic_image.dart';
+import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/button_widget.dart';
 import 'package:wood_analyzer/widgets/input_form_widget.dart';
@@ -17,148 +23,215 @@ class AnalysisInfoScreen extends StatefulWidget {
 }
 
 class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
+  File? image;
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+
+      //setState(() => this.image = imageTemporary);
+      //final imagePermanent = await saveImagePermanently(image.path);
+      setState(() => this.image = imageTemporary);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DiagnosticImageScreen(imagePath: image.path),
+        ),
+      );
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color(0xFFA675A1),
+        backgroundColor: AppColors.lilasColor,
         title: const Text('Informações Análise'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: Dimensions.width400,
-              padding: EdgeInsets.only(
-                right: Dimensions.padding20,
-                left: Dimensions.padding20,
-              ),
-              child: Text(
-                'Entre com as informações de análise.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: Dimensions.font20,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFFA675A1),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: Dimensions.width400,
+                padding: EdgeInsets.only(
+                  right: Dimensions.padding20,
+                  left: Dimensions.padding20,
+                ),
+                child: Text(
+                  'Entre com as informações de análise.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: Dimensions.font20,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.lilasColor,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: Dimensions.height40,
-            ),
-            Column(
-              children: [
-                InputFormWidget(
-                  text: 'Tipo de Pele',
-                  type: TextInputType.text,
-                ),
-                InputFormWidget(
-                  text: 'Fototipo',
-                  type: TextInputType.text,
-                ),
-                InputFormWidget(
-                  text: 'Informações Adicionais',
-                  type: TextInputType.text,
-                ),
-                SizedBox(
-                  height: Dimensions.height40,
-                ),
-                ButtonWidget(
-                  text: 'CARREGAR IMAGEM',
-                  route: Routes.diagnostic,
-                ),
-              ],
-            )
-          ],
+              SizedBox(
+                height: Dimensions.height40,
+              ),
+              Column(
+                children: [
+                  InputFormWidget(
+                    text: 'Tipo de Pele',
+                    type: TextInputType.text,
+                  ),
+                  InputFormWidget(
+                    text: 'Fototipo',
+                    type: TextInputType.text,
+                  ),
+                  InputFormWidget(
+                    text: 'Informações Adicionais',
+                    type: TextInputType.text,
+                  ),
+                  SizedBox(
+                    height: Dimensions.height40,
+                  ),
+                  buildButton(
+                    title: 'Tirar Foto',
+                    icon: Icons.camera_alt_outlined,
+                    onClicked: () => pickImage(ImageSource.camera),
+                  ),
+                  buildButton(
+                    title: 'Selecionar da Galeria',
+                    icon: Icons.image_outlined,
+                    onClicked: () => pickImage(ImageSource.gallery),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class TakePictureScreen extends StatefulWidget {
-  const TakePictureScreen({
-    Key? key,
-    required this.camera,
-  }) : super(key: key);
-
-  final CameraDescription camera;
-
-  @override
-  TakePictureScreenState createState() => TakePictureScreenState();
-}
-
-class TakePictureScreenState extends State<TakePictureScreen> {
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
-    _controller = CameraController(
-      // Get a specific camera from the list of available cameras.
-      widget.camera,
-      // Define the resolution to use.
-      ResolutionPreset.medium,
+Widget buildButton({
+  required String title,
+  required IconData icon,
+  required VoidCallback onClicked,
+}) =>
+    Container(
+      width: Dimensions.width350,
+      margin: EdgeInsets.fromLTRB(0, Dimensions.height10, 0, Dimensions.height10),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(Dimensions.height50),
+          primary: AppColors.lilasColor,
+          onPrimary: Colors.white,
+          textStyle: TextStyle(fontSize: Dimensions.font20),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: Dimensions.icon28),
+            SizedBox(width: Dimensions.width16),
+            Text(title),
+          ],
+        ),
+        onPressed: onClicked,
+      ),
     );
 
-    // Next, initialize the controller. This returns a Future.
-    _initializeControllerFuture = _controller.initialize();
-  }
+class ImageWidget extends StatelessWidget {
+  final File image;
+  final ValueChanged<ImageSource> onClicked;
 
-  @override
-  void dispose() {
-    // Dispose of the controller when the widget is disposed.
-    _controller.dispose();
-    super.dispose();
-  }
+  const ImageWidget({
+    Key? key,
+    required this.image,
+    required this.onClicked,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Take a picture')),
-      // You must wait until the controller is initialized before displaying the
-      // camera preview. Use a FutureBuilder to display a loading spinner until the
-      // controller has finished initializing.
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            // If the Future is complete, display the preview.
-            return CameraPreview(_controller);
-          } else {
-            // Otherwise, display a loading indicator.
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        // Provide an onPressed callback.
-        onPressed: () async {
-          // Take the Picture in a try / catch block. If anything goes wrong,
-          // catch the error.
-          try {
-            // Ensure that the camera is initialized.
-            await _initializeControllerFuture;
-
-            // Attempt to take a picture and get the file `image`
-            // where it was saved.
-            final image = await _controller.takePicture();
-
-            // If the picture was taken, display it on a new screen.
-            Routes.getDiagnosticPage(image.path);
-          } catch (e) {
-            // If an error occurs, log the error to the console.
-            print(e);
-          }
-        },
-        child: const Icon(Icons.camera_alt),
+    return Center(
+      child: Stack(
+        children: [
+          buildImage(context),
+          Positioned(
+            bottom: 0, right: 4, child: Text(''), //buildEditIcon(color),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget buildImage(BuildContext context) {
+    final imagePath = this.image.path;
+    final image = imagePath.contains('https://')
+        ? NetworkImage(imagePath)
+        : FileImage(
+            File(imagePath),
+          );
+
+    return ClipOval(
+      child: Material(
+        color: Colors.transparent,
+        child: Ink.image(
+          image: image as ImageProvider,
+          fit: BoxFit.cover,
+          width: 160,
+          height: 160,
+          child: InkWell(
+            onTap: () async {
+              final source = await showImageSource(context);
+              if (source == null) return;
+
+              onClicked(source);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<ImageSource?> showImageSource(BuildContext context) async {
+    if (Platform.isIOS) {
+      return showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoActionSheet(
+          actions: [
+            CupertinoActionSheetAction(
+              onPressed: () => Navigator.of(context).pop(ImageSource.camera),
+              child: Text('Camera'),
+            ),
+            CupertinoActionSheetAction(
+              onPressed: () => Navigator.of(context).pop(ImageSource.gallery),
+              child: Text('Gallery'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return showModalBottomSheet(
+        context: context,
+        builder: (context) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.camera_alt),
+              title: Text('Camera'),
+              onTap: () => Navigator.of(context).pop(ImageSource.camera),
+            ),
+            ListTile(
+              leading: Icon(Icons.image),
+              title: Text('Gallery'),
+              onTap: () => Navigator.of(context).pop(ImageSource.gallery),
+            ),
+          ],
+        ),
+      );
+    }
   }
 }
