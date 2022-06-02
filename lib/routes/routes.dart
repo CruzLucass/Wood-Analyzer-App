@@ -20,13 +20,12 @@ class Routes {
   static const String report = '/report';
   static const String diagnostic = '/diagnostic';
 
-
   static String getSplashPage() => splashPage;
   static String getLoginPage() => login;
   static String getSignupPage() => signup;
   static String getInitial() => initial;
   static String getPacientInfo() => pacientInfo;
-  static String getAnalysisInfo() => analysisInfo;
+  static String getAnalysisInfo(String email) => '$analysisInfo?email=$email';
   static String getReportPage() => report;
   static String getDiagnosticPage(String imagePath) =>
       '$diagnostic?imagepath=$imagePath';
@@ -66,7 +65,10 @@ class Routes {
     GetPage(
       name: analysisInfo,
       page: () {
-        return AnalysisInfoScreen();
+        var email = Get.parameters['email'];
+        return AnalysisInfoScreen(
+          email: email!,
+        );
       },
       transition: Transition.fadeIn,
     ),

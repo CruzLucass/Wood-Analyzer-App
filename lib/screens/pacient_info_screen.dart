@@ -180,17 +180,12 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          CollectionReference pacients = FirebaseFirestore.instance.collection('pacient');
-
-                          await pacients.add(
-                            {
-                              'name': name,
-                              'email': email,
-                              'age': age,
-                            },
-                          ).then(
-                            (value) => Get.offNamed(Routes.analysisInfo),
-                          );
+                          PacientController().addPacient(PacientModel(
+                              name: name,
+                              age: age,
+                              email: email,
+                              mobilephone: mobilephone));
+                          Get.offNamed(Routes.getAnalysisInfo(email));
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -205,7 +200,11 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       ),
                       child: Text(
                         'Salvar',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textColor),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
+                        ),
                       ),
                     ),
                   ],
