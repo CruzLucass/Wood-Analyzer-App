@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.lilasColor,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.lilasColor,
@@ -33,30 +34,72 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: Dimensions.height160,
-              width: Dimensions.width160,
-              child: Image.asset(
-                'images/logo1.png',
+      body: Column(
+        children: [
+          Container(
+            height: Dimensions.height300,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(90),
               ),
             ),
-            SizedBox(
-              height: Dimensions.height40,
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: Dimensions.height160,
+                    width: Dimensions.width160,
+                    child: Image.asset(
+                      'images/logo1.png',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Text(
+                      'Sobre',
+                      style: TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const TextContainerWidget(
-              title: 'Descrição do Aplicativo',
-              text:
-                  'Informações sobre como vai funcionar o aplicativo e o relatório.',
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: Dimensions.height40,
+                ),
+                const Text(
+                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(
+                  height: Dimensions.height40,
+                ),
+              ],
             ),
-            SizedBox(
-              height: Dimensions.height40,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
