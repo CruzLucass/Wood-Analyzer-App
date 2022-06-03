@@ -1,11 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wood_analyzer/models/pacient_model.dart';
 
 class PacientController {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  get user => _auth.currentUser;
+
   Future<String?> addPacient(PacientModel pacient) async {
     try {
       CollectionReference pacients =
           FirebaseFirestore.instance.collection('pacient');
+
+      pacient.professional = _auth.currentUser!.email;
 
       await pacients.doc(pacient.email).set(
             pacient.toMap(),

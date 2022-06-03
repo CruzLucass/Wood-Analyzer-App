@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wood_analyzer/auth/authentication.dart';
@@ -10,6 +9,7 @@ import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 import 'package:wood_analyzer/widgets/title_widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PacientInfoScreen extends StatefulWidget {
   const PacientInfoScreen({Key? key}) : super(key: key);
@@ -75,14 +75,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         filled: true,
                         fillColor: Colors.white,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O nome é obrigatório';
-                        } else {
-                          name = value;
-                        }
-                        return null;
-                      },
+                      validator: _validarNome,
                       onChanged: (value) => name = value,
                     ),
                     SizedBox(
@@ -103,14 +96,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         filled: true,
                         fillColor: Colors.white,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O e-mail é obrigatório';
-                        } else {
-                          email = value;
-                        }
-                        return null;
-                      },
+                      validator: _validarEmail,
                       onChanged: (value) => email = value,
                     ),
                     SizedBox(
@@ -147,7 +133,10 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        MaskTextInputFormatter(mask: "(##) # ####-####"),
+                      ],
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         labelText: 'Celular',
                         suffixIcon: Padding(
@@ -163,14 +152,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         filled: true,
                         fillColor: Colors.white,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O celular é obrigatório';
-                        } else {
-                          mobilephone = value;
-                        }
-                        return null;
-                      },
+                      validator: _validarCelular,
                       onChanged: (value) => mobilephone = value,
                     ),
                     SizedBox(
@@ -180,12 +162,16 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          PacientController().addPacient(PacientModel(
-                              name: name,
-                              age: age,
-                              email: email,
-                              mobilephone: mobilephone));
-                          Get.offNamed(Routes.getAnalysisInfo(email));
+                          PacientController().addPacient(
+                            PacientModel(
+                                name: name,
+                                age: age,
+                                email: email,
+                                mobilephone: mobilephone),
+                          );
+                          Get.offNamed(
+                            Routes.getAnalysisInfo(email),
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -219,4 +205,35 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
       ),
     );
   }
+}
+
+String? _validarEmail(String? value) {
+  String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regExp = RegExp(pattern);
+  if (value!.isEmpty) {
+    return "Informe o Email";
+  } else if (!regExp.hasMatch(value)) {
+    return "Email inválido";
+  } else {
+    return null;
+  }
+}
+
+String? _validarNome(String? value) {
+  String patttern = r'(^[a-zA-Z ]*$)';
+  RegExp regExp = RegExp(patttern);
+  if (value!.isEmpty) {
+    return "Informe o nome";
+  } else if (!regExp.hasMatch(value)) {
+    return "O nome deve conter caracteres de a-z ou A-Z";
+  }
+  return null;
+}
+
+String? _validarCelular(String? value) {
+  if (value!.isEmpty) {
+    return "Informe o celular";
+  }
+  return null;
 }

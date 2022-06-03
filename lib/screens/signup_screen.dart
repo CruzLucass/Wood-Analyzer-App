@@ -128,14 +128,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O e-mail é obrigatório';
-                        } else {
-                          email = value;
-                        }
-                        return null;
-                      },
+                      validator: _validarEmail,
+                      onSaved: (value) => email = value,
                     ),
                     SizedBox(
                       height: 20,
@@ -218,8 +212,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 content: Text(
-                                  result,
-                                  style: TextStyle(fontSize: 16),
+                                  'Erro ao salvar usuário',
+                                  style: TextStyle(fontSize: 20),
                                 ),
                               ));
                             }
@@ -252,5 +246,18 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
+  }
+}
+
+String? _validarEmail(String? value) {
+  String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regExp = RegExp(pattern);
+  if (value!.isEmpty) {
+    return "Informe o Email";
+  } else if (!regExp.hasMatch(value)) {
+    return "Email inválido";
+  } else {
+    return null;
   }
 }

@@ -182,7 +182,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                           .showSnackBar(SnackBar(
                                         content: Text(
                                           'Informações adicionadas com sucesso',
-                                          style: TextStyle(fontSize: 24),
+                                          style: TextStyle(fontSize: 20),
                                         ),
                                       ));
                                       _formKey.currentState!.reset();
@@ -191,7 +191,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                           .showSnackBar(SnackBar(
                                         content: Text(
                                           'Ocorreu um erro ao salvar as informações',
-                                          style: TextStyle(fontSize: 24),
+                                          style: TextStyle(fontSize: 20),
                                         ),
                                       ));
                                     }
