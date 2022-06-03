@@ -5,6 +5,7 @@ class PacientModel {
   int age;
   String email;
   String mobilephone;
+  String? professional;
   String? skinType;
   String? phototype;
   String? moreInformation;
@@ -14,6 +15,7 @@ class PacientModel {
     required this.age,
     required this.email,
     required this.mobilephone,
+    this.professional,
     this.skinType,
     this.phototype,
     this.moreInformation,
@@ -26,6 +28,7 @@ class PacientModel {
       'age': age,
       'email': email,
       'mobilephone': mobilephone,
+      'professional': professional,
       'skinType': skinType,
       'phototype': phototype,
       'moreInformation': moreInformation,
@@ -39,6 +42,7 @@ class PacientModel {
       age: map['age']?.toInt() ?? 0,
       email: map['email'] ?? '',
       mobilephone: map['mobilephone'] ?? '',
+      professional: map['professional'] ?? '',
       skinType: map['skinType'],
       phototype: map['phototype'],
       moreInformation: map['moreInformation'],

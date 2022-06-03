@@ -91,29 +91,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'E-mail',
-                      suffixIcon: Padding(
-                        child: Icon(Icons.email),
-                        padding: EdgeInsets.all(5),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        suffixIcon: Padding(
+                          child: Icon(Icons.email),
+                          padding: EdgeInsets.all(5),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'O e-mail é obrigatório';
-                      } else {
-                        _email = value;
-                      }
-                      return null;
-                    },
-                  ),
+                      validator: _validarEmail,
+                      onSaved: (value) => _email = value),
                   SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
@@ -247,5 +240,18 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       )),
     );
+  }
+}
+
+String? _validarEmail(String? value) {
+  String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regExp = RegExp(pattern);
+  if (value!.isEmpty) {
+    return "Informe o Email";
+  } else if (!regExp.hasMatch(value)) {
+    return "Email inválido";
+  } else {
+    return null;
   }
 }
