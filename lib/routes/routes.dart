@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:wood_analyzer/screens/analysis_info_screen.dart';
 import 'package:wood_analyzer/screens/diagnostic_image.dart';
+import 'package:wood_analyzer/screens/forgot_password_screen.dart';
 import 'package:wood_analyzer/screens/home_screen.dart';
 import 'package:wood_analyzer/screens/login_screen.dart';
 import 'package:wood_analyzer/screens/pacient_info_screen.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const String splashPage = '/splash-page';
   static const String login = '/login';
   static const String signup = '/signup';
+  static const String forgotPassword = '/forgot_password';
   static const String initial = '/';
   static const String pacientInfo = '/pacient_info';
   static const String analysisInfo = '/analysis_info';
@@ -23,6 +25,7 @@ class Routes {
   static String getSplashPage() => splashPage;
   static String getLoginPage() => login;
   static String getSignupPage() => signup;
+  static String getForgotPasswordPage() => forgotPassword;
   static String getInitial() => initial;
   static String getPacientInfo() => pacientInfo;
   static String getAnalysisInfo(String email) => '$analysisInfo?email=$email';
@@ -47,6 +50,13 @@ class Routes {
       page: () {
         return SignupScreen();
       },
+    ),
+    GetPage(
+      name: forgotPassword,
+      page: () {
+        return ForgotPasswordScreen();
+      },
+      transition: Transition.fadeIn,
     ),
     GetPage(
       name: initial,
