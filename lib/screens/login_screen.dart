@@ -199,7 +199,9 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.offNamed(Routes.forgotPassword);
+                },
                 child: SizedBox(
                   width: Dimensions.width300,
                   child: Center(
