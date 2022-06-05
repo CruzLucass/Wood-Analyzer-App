@@ -7,22 +7,17 @@ import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String? email;
-  String? password;
-  String? name;
-  bool _obscureText = false;
-
-  bool agree = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'Faça seu cadastro',
+                      'Recuperação de senha',
                       style: TextStyle(
                         color: AppColors.lightColor,
                         fontSize: 34,
@@ -77,12 +72,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     alignment: Alignment.center,
                     width: 350,
                     child: Text(
-                      'Este aplicativo vai te dar dicas importantes e você poderá ver seu progresso com o aprendizado.',
+                      'Receba uma email para trocar sua senha.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -100,27 +95,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Nome',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O nome é obrigatório';
-                        } else {
-                          name = value;
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
                         labelText: 'E-mail',
                         labelStyle: TextStyle(color: AppColors.textColor),
                         border: OutlineInputBorder(
@@ -134,85 +108,35 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: !_obscureText,
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        suffixIcon: Padding(
-                          child: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
-                            },
-                          ),
-                          padding: EdgeInsets.all(5),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'A senha é obrigatória';
-                        } else {
-                          password = value;
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => password = value,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Checkbox(
-                          onChanged: (_) {
-                            setState(() {
-                              agree = !agree;
-                            });
-                          },
-                          value: agree,
-                        ),
-                        Flexible(
-                          child: Text(
-                              'Ao criar uma conta, concordo com os Termos e Condições e a Política de Privacidade.'),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-
-                          Authentication()
-                              .signUp(
-                            email: email!,
-                            password: password!,
-                            name: name!,
-                          )
-                              .then((result) {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                          Authentication().resetPassword(email!).then((result) {
                             if (result == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Email enviado com sucesso.',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              );
                               Get.offNamed(Routes.login);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 content: Text(
-                                  'Erro ao salvar usuário',
+                                  'Erro ao enviar email. $result',
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ));
@@ -231,7 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       child: Text(
-                        'Salvar',
+                        'Recuperar Senha',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
