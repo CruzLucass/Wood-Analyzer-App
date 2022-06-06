@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:wood_analyzer/models/diagnostic_dto.dart';
+
 class PacientModel {
   String name;
   int age;
@@ -10,6 +12,8 @@ class PacientModel {
   String? phototype;
   String? moreInformation;
   String? urlPhoto;
+  List<DiagnosticDto>? diagnostics;
+
   PacientModel({
     required this.name,
     required this.age,
@@ -20,6 +24,7 @@ class PacientModel {
     this.phototype,
     this.moreInformation,
     this.urlPhoto,
+    this.diagnostics,
   });
 
   Map<String, dynamic> toMap() {
@@ -33,6 +38,7 @@ class PacientModel {
       'phototype': phototype,
       'moreInformation': moreInformation,
       'urlPhoto': urlPhoto,
+      'diagnostics': diagnostics?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -42,11 +48,15 @@ class PacientModel {
       age: map['age']?.toInt() ?? 0,
       email: map['email'] ?? '',
       mobilephone: map['mobilephone'] ?? '',
-      professional: map['professional'] ?? '',
+      professional: map['professional'],
       skinType: map['skinType'],
       phototype: map['phototype'],
       moreInformation: map['moreInformation'],
       urlPhoto: map['urlPhoto'],
+      diagnostics: map['diagnostics'] != null
+          ? List<DiagnosticDto>.from(
+              map['diagnostics']?.map((x) => DiagnosticDto.fromMap(x)))
+          : null,
     );
   }
 

@@ -47,4 +47,12 @@ class PacientController {
         FirebaseFirestore.instance.collection('pacient');
     return pacients.doc(email).snapshots();
   }
+
+//TODO: testar se o método vai listar todos os documentos do profissional
+  CollectionReference<Object?> getAllDiagnostics() {
+    CollectionReference pacients =
+        FirebaseFirestore.instance.collection('pacient');
+    return pacients
+      ..where('professional', isEqualTo: _auth.currentUser!.email).get();
+  }
 }
