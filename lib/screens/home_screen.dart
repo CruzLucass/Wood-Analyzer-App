@@ -25,20 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.lilasColor,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.lilasColor,
-        title: const Text('Seja Bem-vindo!'),
-        leading: IconButton(
-          onPressed: () {
-            Get.offNamed(Routes.login);
-          },
-          icon: Icon(
-            Icons.chevron_left_rounded,
-            size: 30,
-          ),
-        ),
-      ),
       body: Column(
         children: [
           Container(
@@ -50,39 +36,59 @@ class _HomeScreenState extends State<HomeScreen> {
                 bottomRight: Radius.circular(90),
               ),
             ),
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
+            child: Column(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  margin: EdgeInsets.only(
+                    right: Dimensions.width300,
+                    top: Dimensions.height20,
                   ),
-                  SizedBox(
-                    height: Dimensions.height160,
-                    width: Dimensions.width160,
-                    child: Image.asset(
-                      'images/logo1.png',
+                  child: IconButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.login);
+                    },
+                    icon: Icon(
+                      Icons.chevron_left_rounded,
+                      color: Colors.black,
+                      size: 40,
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: Text(
-                      'Sobre',
-                      style: TextStyle(
-                        color: AppColors.textColor,
-                        fontSize: 34,
-                        fontWeight: FontWeight.bold,
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: Dimensions.height50,
+                      width: 50,
+                      child: Image.asset(
+                        'images/logo1.png',
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                      child: Text(
+                        'Sobre',
+                        style: TextStyle(
+                          color: AppColors.textColor,
+                          fontSize: 34,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
               children: [
                 Container(
                   padding: EdgeInsets.all(20),
@@ -94,6 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 60,
                 ),
               ],
             ),
@@ -115,8 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: AppColors.mainColor,
                     size: 35,
                   ),
-                  onTap: () =>
-                      launch('https://www.linkedin.com/in/lucas-cruzz/'),
+                  onTap: () => launchUrl(
+                    Uri.parse('https://www.linkedin.com/in/lucas-cruzz/'),
+                  ),
                 ),
               ],
             ),
@@ -126,8 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.mainColor,
                 size: 35,
               ),
-              onTap: () =>
-                  launch('https://www.linkedin.com/in/matheus-fidelis/'),
+              onTap: () => launchUrl(
+                Uri.parse('https://www.linkedin.com/in/matheus-fidelis/'),
+              ),
             ),
             InkWell(
               child: Icon(
@@ -135,8 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.mainColor,
                 size: 35,
               ),
-              onTap: () =>
-                  launch('https://www.linkedin.com/in/leonardo-garroni'),
+              onTap: () => launchUrl(
+                Uri.parse('https://www.linkedin.com/in/leonardo-garroni'),
+              ),
             ),
           ],
         ),
