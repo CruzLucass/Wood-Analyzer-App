@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
           children: [
             Container(
               width: double.infinity,
-              height: 300,
+              height: Dimensions.height300,
               decoration: BoxDecoration(
                 color: AppColors.lilasColor,
                 borderRadius: BorderRadius.only(
@@ -77,7 +77,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     alignment: Alignment.center,
                     width: 350,
                     child: Text(
-                      'Este aplicativo vai te dar dicas importantes e você poderá ver seu progresso com o aprendizado.',
+                      'Este aplicativo vai te ajudar nos diagnósticos dos seus pacientes.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
             ),
             Form(
               key: _formKey,
@@ -103,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         labelText: 'Nome',
                         labelStyle: TextStyle(color: AppColors.textColor),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
@@ -124,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         labelText: 'E-mail',
                         labelStyle: TextStyle(color: AppColors.textColor),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
@@ -158,7 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           padding: EdgeInsets.all(5),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
@@ -222,12 +222,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         primary: AppColors.lilasColor,
                         fixedSize: Size(
-                          Dimensions.width300,
-                          Dimensions.height50,
+                          Dimensions.width350,
+                          50,
                         ),
                       ),
                       child: Text(
@@ -238,10 +238,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
