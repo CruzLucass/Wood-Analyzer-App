@@ -115,8 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: AppColors.mainColor,
                     size: 35,
                   ),
-                  onTap: () =>
-                      launch('https://www.linkedin.com/in/lucas-cruzz/'),
+                  onTap: () => launchUrl(
+                    Uri.parse('https://www.linkedin.com/in/lucas-cruzz/'),
+                  ),
                 ),
               ],
             ),
@@ -126,8 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.mainColor,
                 size: 35,
               ),
-              onTap: () =>
-                  launch('https://www.linkedin.com/in/matheus-fidelis/'),
+              onTap: () => launchUrl(
+                Uri.parse('https://www.linkedin.com/in/matheus-fidelis/'),
+              ),
             ),
             InkWell(
               child: Icon(
@@ -135,8 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.mainColor,
                 size: 35,
               ),
-              onTap: () =>
-                  launch('https://www.linkedin.com/in/leonardo-garroni'),
+              onTap: () => launchUrl(
+                Uri.parse('https://www.linkedin.com/in/leonardo-garroni'),
+              ),
             ),
           ],
         ),
