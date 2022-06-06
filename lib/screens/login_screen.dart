@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   SizedBox(
                     height: Dimensions.height160,
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   Center(
                     child: Text(
