@@ -70,7 +70,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -91,7 +91,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -114,7 +114,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -147,7 +147,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -176,12 +176,12 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         primary: AppColors.lightColor,
                         fixedSize: Size(
                           300,
-                          Dimensions.height50,
+                          50,
                         ),
                       ),
                       child: Text(
@@ -197,7 +197,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 20,
               ),
             ],
           ),

@@ -17,11 +17,11 @@ class TitleWidget extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'Roboto',
-          fontSize: Dimensions.font20,
+          fontSize: 20,
           fontWeight: FontWeight.w900,
-          color: const Color(0xFFA675A1),
+          color: Color(0xFFA675A1),
         ),
       ),
     );

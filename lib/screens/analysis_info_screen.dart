@@ -14,6 +14,7 @@ import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/screens/diagnostic_image.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
+import 'package:wood_analyzer/widgets/title_widget.dart';
 
 class AnalysisInfoScreen extends StatefulWidget {
   final String email;
@@ -56,189 +57,186 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.lilasColor,
-          title: const Text('Informações Análise'),
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: Dimensions.width400,
-                  padding: EdgeInsets.only(
-                    right: Dimensions.padding20,
-                    left: Dimensions.padding20,
-                  ),
-                  child: Text(
-                    'Entre com as informações de análise.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: Dimensions.font20,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.lilasColor,
-                    ),
-                  ),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: AppColors.lilasColor,
+        title: const Text('Informações Análise'),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: Dimensions.width400,
+                padding: EdgeInsets.only(
+                  right: Dimensions.padding20,
+                  left: Dimensions.padding20,
                 ),
-                SizedBox(
-                  height: Dimensions.height40,
+                child: TitleWidget(
+                  text: 'Entre com as informações de análise.',
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Tipo de Pele',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  children: [
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: 'Tipo de Pele',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'O Tipo de Pele é obrigatório';
-                                } else {
-                                  skinType = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => skinType = value,
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Fototipo',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'O Tipo de Pele é obrigatório';
+                              } else {
+                                skinType = value;
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => skinType = value,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: 'Fototipo',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'O Fototipo é obrigatório';
-                                } else {
-                                  phototype = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => phototype = value,
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Informações Adicionais',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'O Fototipo é obrigatório';
+                              } else {
+                                phototype = value;
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => phototype = value,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: 'Informações Adicionais',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'A Informações Adicionais é obrigatório';
-                                } else {
-                                  moreInformation = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => moreInformation = value,
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  _formKey.currentState!.save();
-                                  PacientController()
-                                      .updatePacient(moreInformation, phototype,
-                                          skinType, widget.email)
-                                      .then((result) {
-                                    if (result == null) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text(
-                                          'Informações adicionadas com sucesso',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ));
-                                      _formKey.currentState!.reset();
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text(
-                                          'Ocorreu um erro ao salvar as informações',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ));
-                                    }
-                                  });
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                primary: AppColors.lightColor,
-                                fixedSize: Size(
-                                  300,
-                                  Dimensions.height50,
-                                ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'A Informações Adicionais é obrigatório';
+                              } else {
+                                moreInformation = value;
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => moreInformation = value,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                PacientController()
+                                    .updatePacient(moreInformation, phototype,
+                                        skinType, widget.email)
+                                    .then((result) {
+                                  if (result == null) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(
+                                        'Informações adicionadas com sucesso',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ));
+                                    _formKey.currentState!.reset();
+                                  } else {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(
+                                        'Ocorreu um erro ao salvar as informações',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ));
+                                  }
+                                });
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Text(
-                                'Salvar',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.textColor),
+                              primary: AppColors.lightColor,
+                              fixedSize: Size(
+                                300,
+                                50,
                               ),
                             ),
-                            SizedBox(
-                              height: Dimensions.height40,
+                            child: Text(
+                              'Salvar',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textColor),
                             ),
-                            buildButton(
-                              title: 'Tirar Foto',
-                              icon: Icons.camera_alt_outlined,
-                              onClicked: () => pickImage(ImageSource.camera),
-                            ),
-                            buildButton(
-                              title: 'Selecionar da Galeria',
-                              icon: Icons.image_outlined,
-                              onClicked: () => pickImage(ImageSource.gallery),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          buildButton(
+                            title: 'Tirar Foto',
+                            icon: Icons.camera_alt_outlined,
+                            onClicked: () => pickImage(ImageSource.camera),
+                          ),
+                          buildButton(
+                            title: 'Selecionar da Galeria',
+                            icon: Icons.image_outlined,
+                            onClicked: () => pickImage(ImageSource.gallery),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
