@@ -55,13 +55,17 @@ class PacientModel {
       urlPhoto: map['urlPhoto'],
       diagnostics: map['diagnostics'] != null
           ? List<DiagnosticDto>.from(
-              map['diagnostics']?.map((x) => DiagnosticDto.fromMap(x)))
+              map['diagnostics']?.map(
+                (x) => DiagnosticDto.fromMap(x),
+              ),
+            )
           : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PacientModel.fromJson(String source) =>
-      PacientModel.fromMap(json.decode(source));
+  factory PacientModel.fromJson(String source) => PacientModel.fromMap(
+        json.decode(source),
+      );
 }

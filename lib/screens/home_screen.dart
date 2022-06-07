@@ -88,70 +88,232 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Expanded(
             child: ListView(
+              padding: EdgeInsets.all(20),
               shrinkWrap: true,
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: const Text(
-                    'O Wood Analyzer é um aplicativo com o objetivo de documentar diagnósticos para doenças na pele. Para utilizar, cadastre-se e faça o login com a sua conta. Após isso preencha os campos com as informações do paciente. Agora você terá que selecionar a imagem ou tirar uma nova para que seja analisada. Preencha os campos com as informações da pele do paciente. Agora podemos fazer a análise, selecione as opções do diagnóstico.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
+                const Text(
+                  'O Wood Analyzer é um aplicativo com o objetivo de documentar diagnósticos de enfermidades na pele.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
                   ),
+                  textAlign: TextAlign.justify,
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 10,
+                ),
+                const Text(
+                  'Para utilizar, cadastre-se e faça o login com seu email e senha.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Após realizar login você poderá cadastrar seu cliente com as informações pessoais dele.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Você também deve inserir informações sobre o tipo da pele do seu paciente.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Depois de salvar as informações, selecione uma foto da sua galeria ou se preferir tire a foto da lâmpada de wood no momento do cadastro.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Após isso, será listado os possíveis diagnóticos da foto filtrada pela lâmpada. Selecione os diagnóticos  aparentes na foto.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Clique em salvar para ver todas as informações do seu paciente e caso seja necessário gere o pdf para comparações.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Desenvolvido por',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        decoration: TextDecoration.underline,
+                        shadows: const <Shadow>[
+                          Shadow(
+                            offset: Offset(2, 2),
+                            blurRadius: 3.0,
+                            color: Color.fromARGB(100, 0, 0, 0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              child: Icon(
+                                FontAwesomeIcons.linkedin,
+                                color: AppColors.lightColor,
+                                size: 35,
+                              ),
+                              onTap: () => launchUrl(
+                                Uri.parse(
+                                    'https://www.linkedin.com/in/lucas-cruzz/'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              child: Text(
+                                'Lucas Cruz',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                  shadows: const <Shadow>[
+                                    Shadow(
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(100, 0, 0, 0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            InkWell(
+                              child: Icon(
+                                FontAwesomeIcons.linkedin,
+                                color: AppColors.lightColor,
+                                size: 35,
+                              ),
+                              onTap: () => launchUrl(
+                                Uri.parse(
+                                    'https://www.linkedin.com/in/matheus-fidelis/'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              child: Text(
+                                'Matheus Fidelis',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                  shadows: const <Shadow>[
+                                    Shadow(
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(100, 0, 0, 0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            InkWell(
+                              child: Icon(
+                                FontAwesomeIcons.linkedin,
+                                color: AppColors.lightColor,
+                                size: 35,
+                              ),
+                              onTap: () => launchUrl(
+                                Uri.parse(
+                                    'https://www.linkedin.com/in/leonardo-garroni'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              child: Text(
+                                'Leonardo Garroni',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                  shadows: const <Shadow>[
+                                    Shadow(
+                                      offset: Offset(2, 2),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(100, 0, 0, 0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ],
-      ),
-      bottomSheet: Container(
-        height: 50,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                InkWell(
-                  child: Icon(
-                    FontAwesomeIcons.linkedin,
-                    color: AppColors.mainColor,
-                    size: 35,
-                  ),
-                  onTap: () => launchUrl(
-                    Uri.parse('https://www.linkedin.com/in/lucas-cruzz/'),
-                  ),
-                ),
-              ],
-            ),
-            InkWell(
-              child: Icon(
-                FontAwesomeIcons.linkedin,
-                color: AppColors.mainColor,
-                size: 35,
-              ),
-              onTap: () => launchUrl(
-                Uri.parse('https://www.linkedin.com/in/matheus-fidelis/'),
-              ),
-            ),
-            InkWell(
-              child: Icon(
-                FontAwesomeIcons.linkedin,
-                color: AppColors.mainColor,
-                size: 35,
-              ),
-              onTap: () => launchUrl(
-                Uri.parse('https://www.linkedin.com/in/leonardo-garroni'),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
