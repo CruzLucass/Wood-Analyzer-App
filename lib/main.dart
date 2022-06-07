@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wood Analyser',
-      // home: DiagnosticImageScreen(),
+      //home: DiagnosticImageScreen(),
       initialRoute: Routes.getSplashPage(),
       getPages: Routes.routes,
     );
