@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wood_analyzer/auth/authentication.dart';
 import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
@@ -20,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   String? email;
   String? password;
   String? name;
+  late String mobilephone;
   bool _obscureText = false;
 
   bool agree = false;
@@ -75,7 +77,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    width: 350,
+                    width: 300,
                     child: Text(
                       'Este aplicativo vai te ajudar nos diagnósticos dos seus pacientes.',
                       textAlign: TextAlign.center,
@@ -90,7 +92,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Form(
               key: _formKey,
@@ -98,82 +100,128 @@ class _SignupScreenState extends State<SignupScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Nome',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'O nome é obrigatório';
-                        } else {
-                          name = value;
-                        }
-                        return null;
-                      },
-                    ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                      ),
-                      validator: _validarEmail,
-                      onSaved: (value) => email = value,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: !_obscureText,
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        suffixIcon: Padding(
-                          child: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
-                            },
+                      height: 50,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Nome',
+                          labelStyle: TextStyle(color: AppColors.textColor),
+                          suffixIcon: Padding(
+                            child: Icon(Icons.person),
+                            padding: EdgeInsets.all(5),
                           ),
-                          padding: EdgeInsets.all(5),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'O nome é obrigatório';
+                          } else {
+                            name = value;
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'A senha é obrigatória';
-                        } else {
-                          password = value;
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => password = value,
                     ),
                     SizedBox(
                       height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(color: AppColors.textColor),
+                          suffixIcon: Padding(
+                            child: Icon(Icons.email),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                        ),
+                        validator: _validarEmail,
+                        onSaved: (value) => email = value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: !_obscureText,
+                        decoration: InputDecoration(
+                          labelText: 'Senha',
+                          labelStyle: TextStyle(color: AppColors.textColor),
+                          suffixIcon: Padding(
+                            child: IconButton(
+                              icon: Icon(
+                                // Based on passwordVisible state choose the icon
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                // Update the state i.e. toogle the state of passwordVisible variable
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'A senha é obrigatória';
+                          } else {
+                            password = value;
+                          }
+                          return null;
+                        },
+                        onChanged: (value) => password = value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        inputFormatters: [
+                          MaskTextInputFormatter(mask: "(##) # ####-####"),
+                        ],
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'Celular',
+                          suffixIcon: Padding(
+                            child: Icon(
+                              Icons.phone,
+                            ),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        validator: _validarCelular,
+                        onChanged: (value) => mobilephone = value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Row(
                       children: <Widget>[
@@ -198,12 +246,20 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
 
                           Authentication()
                               .signUp(
                             email: email!,
                             password: password!,
                             name: name!,
+                            mobilephone: mobilephone,
                           )
                               .then((result) {
                             if (result == null) {
@@ -222,7 +278,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         primary: AppColors.lilasColor,
                         fixedSize: Size(
@@ -237,9 +293,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
                     ),
                   ],
                 ),
@@ -263,4 +316,11 @@ String? _validarEmail(String? value) {
   } else {
     return null;
   }
+}
+
+String? _validarCelular(String? value) {
+  if (value!.isEmpty) {
+    return "Informe o celular";
+  }
+  return null;
 }

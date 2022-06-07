@@ -60,100 +60,112 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'Nome completo',
-                        suffixIcon: Padding(
-                          child: Icon(Icons.person),
-                          padding: EdgeInsets.all(5),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                      validator: _validarNome,
-                      onChanged: (value) => name = value,
-                    ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        suffixIcon: Padding(
-                          child: Icon(Icons.email),
-                          padding: EdgeInsets.all(5),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                      validator: _validarEmail,
-                      onChanged: (value) => email = value,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: 'Idade',
-                        suffixIcon: Padding(
-                          child: Icon(
-                            Icons.perm_contact_calendar_sharp,
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'Nome completo',
+                          suffixIcon: Padding(
+                            child: Icon(Icons.person),
+                            padding: EdgeInsets.all(5),
                           ),
-                          padding: EdgeInsets.all(5),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
+                        validator: _validarNome,
+                        onChanged: (value) => name = value,
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'A idade é obrigatório';
-                        } else {
-                          age = int.parse(value);
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => age = int.parse(value),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      inputFormatters: [
-                        MaskTextInputFormatter(mask: "(##) # ####-####"),
-                      ],
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        labelText: 'Celular',
-                        suffixIcon: Padding(
-                          child: Icon(
-                            Icons.phone,
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          suffixIcon: Padding(
+                            child: Icon(Icons.email),
+                            padding: EdgeInsets.all(5),
                           ),
-                          padding: EdgeInsets.all(5),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
+                        validator: _validarEmail,
+                        onChanged: (value) => email = value,
                       ),
-                      validator: _validarCelular,
-                      onChanged: (value) => mobilephone = value,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: 'Idade',
+                          suffixIcon: Padding(
+                            child: Icon(
+                              Icons.perm_contact_calendar_sharp,
+                            ),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'A idade é obrigatório';
+                          } else {
+                            age = int.parse(value);
+                          }
+                          return null;
+                        },
+                        onChanged: (value) => age = int.parse(value),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        inputFormatters: [
+                          MaskTextInputFormatter(mask: "(##) # ####-####"),
+                        ],
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: 'Celular',
+                          suffixIcon: Padding(
+                            child: Icon(
+                              Icons.phone,
+                            ),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        validator: _validarCelular,
+                        onChanged: (value) => mobilephone = value,
+                      ),
                     ),
                     SizedBox(
                       height: 30,
@@ -162,6 +174,13 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
                           PacientController().addPacient(
                             PacientModel(
                                 name: name,
@@ -176,7 +195,7 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         primary: AppColors.lightColor,
                         fixedSize: Size(

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:wood_analyzer/controllers/pacient_controller.dart';
@@ -83,9 +84,6 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                   text: 'Entre com as informações de análise.',
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
               Padding(
                 padding: const EdgeInsets.all(30),
                 child: Column(
@@ -94,74 +92,86 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              labelText: 'Tipo de Pele',
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                          SizedBox(
+                            height: 50,
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelText: 'Tipo de Pele',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
                               ),
-                              filled: true,
-                              fillColor: Colors.white,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'O Tipo de Pele é obrigatório';
+                                } else {
+                                  skinType = value;
+                                }
+                                return null;
+                              },
+                              onChanged: (value) => skinType = value,
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'O Tipo de Pele é obrigatório';
-                              } else {
-                                skinType = value;
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => skinType = value,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              labelText: 'Fototipo',
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                          SizedBox(
+                            height: 50,
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelText: 'Fototipo',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
                               ),
-                              filled: true,
-                              fillColor: Colors.white,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'O Fototipo é obrigatório';
+                                } else {
+                                  phototype = value;
+                                }
+                                return null;
+                              },
+                              onChanged: (value) => phototype = value,
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'O Fototipo é obrigatório';
-                              } else {
-                                phototype = value;
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => phototype = value,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              labelText: 'Informações Adicionais',
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                          SizedBox(
+                            height: 50,
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelText: 'Informações Adicionais',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
                               ),
-                              filled: true,
-                              fillColor: Colors.white,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'A Informações Adicionais é obrigatório';
+                                } else {
+                                  moreInformation = value;
+                                }
+                                return null;
+                              },
+                              onChanged: (value) => moreInformation = value,
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'A Informações Adicionais é obrigatório';
-                              } else {
-                                moreInformation = value;
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => moreInformation = value,
                           ),
                           SizedBox(
                             height: 30,
@@ -170,11 +180,18 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
+
                                 PacientController()
-                                    .updatePacient(moreInformation, phototype, skinType, widget.email)
+                                    .updatePacient(
+                                  moreInformation,
+                                  phototype,
+                                  skinType,
+                                  widget.email,
+                                )
                                     .then((result) {
                                   if (result == null) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
                                       content: Text(
                                         'Informações adicionadas com sucesso',
                                         style: TextStyle(fontSize: 20),
@@ -182,7 +199,8 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                     ));
                                     _formKey.currentState!.reset();
                                   } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
                                       content: Text(
                                         'Ocorreu um erro ao salvar as informações',
                                         style: TextStyle(fontSize: 20),
@@ -194,7 +212,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               primary: AppColors.lightColor,
                               fixedSize: Size(
@@ -204,11 +222,14 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             ),
                             child: Text(
                               'Salvar',
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textColor),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textColor),
                             ),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           buildButton(
                             title: 'Tirar Foto',
@@ -241,7 +262,8 @@ Widget buildButton({
 }) =>
     Container(
       width: Dimensions.width350,
-      margin: EdgeInsets.fromLTRB(0, Dimensions.height10, 0, Dimensions.height10),
+      margin:
+          EdgeInsets.fromLTRB(0, Dimensions.height10, 0, Dimensions.height10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: Size.fromHeight(Dimensions.height50),

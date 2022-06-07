@@ -90,60 +90,66 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        suffixIcon: Padding(
-                          child: Icon(Icons.email),
-                          padding: EdgeInsets.all(5),
+                  SizedBox(
+                    height: 50,
+                    child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          suffixIcon: Padding(
+                            child: Icon(Icons.email),
+                            padding: EdgeInsets.all(5),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
+                        validator: _validarEmail,
+                        onSaved: (value) => _email = value),
+                  ),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    height: 50,
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: !_passwordVisible,
+                      decoration: InputDecoration(
+                        labelText: 'Senha',
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         filled: true,
                         fillColor: Colors.white,
-                      ),
-                      validator: _validarEmail,
-                      onSaved: (value) => _email = value),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: !_passwordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      suffixIcon: Padding(
-                        child: IconButton(
-                          icon: Icon(
-                            _passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                        suffixIcon: Padding(
+                          child: IconButton(
+                            icon: Icon(
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _passwordVisible = !_passwordVisible;
-                            });
-                          },
+                          padding: EdgeInsets.all(5),
                         ),
-                        padding: EdgeInsets.all(5),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'A senha é obrigatória';
+                        } else {
+                          _password = value;
+                        }
+                        return null;
+                      },
+                      onChanged: (value) => _password = value,
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'A senha é obrigatória';
-                      } else {
-                        _password = value;
-                      }
-                      return null;
-                    },
-                    onChanged: (value) => _password = value,
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -152,6 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
                           Authentication()
                               .signIn(email: _email!, password: _password!)
                               .then((result) {
@@ -171,20 +184,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         primary: AppColors.lightColor,
                         fixedSize: Size(
                           Dimensions.width350,
-                          50,
+                          45,
                         ),
                       ),
                       child: Text(
                         'Entrar',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textColor),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
+                        ),
                       ),
                     ),
                   ),
@@ -205,17 +219,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        decoration: TextDecoration.underline,
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        shadows: const <Shadow>[
+                          Shadow(
+                            offset: Offset(2, 2),
+                            blurRadius: 3.0,
+                            color: Color.fromARGB(100, 0, 0, 0),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
               ),
-              Center(
-                child: Divider(
-                  color: Colors.white.withOpacity(0.5),
-                ),
+              SizedBox(
+                height: 10,
               ),
               GestureDetector(
                 onTap: () {
@@ -227,8 +248,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Faça seu cadastro',
                       style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        decoration: TextDecoration.underline,
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        shadows: const <Shadow>[
+                          Shadow(
+                            offset: Offset(2, 2),
+                            blurRadius: 3.0,
+                            color: Color.fromARGB(100, 0, 0, 0),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -236,7 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
               )
             ],
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 20),
         ],
       )),
     );

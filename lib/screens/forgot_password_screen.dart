@@ -95,17 +95,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(color: AppColors.textColor),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(color: AppColors.textColor),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        validator: _validarEmail,
+                        onSaved: (value) => email = value,
                       ),
-                      validator: _validarEmail,
-                      onSaved: (value) => email = value,
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
@@ -146,7 +149,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         primary: AppColors.lilasColor,
                         fixedSize: Size(

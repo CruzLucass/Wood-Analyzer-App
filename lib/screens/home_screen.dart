@@ -1,17 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
-import 'package:wood_analyzer/widgets/button_widget.dart';
-import 'package:wood_analyzer/widgets/text_container_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

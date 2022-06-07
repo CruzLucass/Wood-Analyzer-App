@@ -29,8 +29,9 @@ class Routes {
   static String getInitial() => initial;
   static String getPacientInfo() => pacientInfo;
   static String getAnalysisInfo(String email) => '$analysisInfo?email=$email';
-  static String getReportPage() => report;
-  static String getDiagnosticPage(String imagePath) => '$diagnostic?imagepath=$imagePath';
+  static String getReportPage(String email) => '$report?email=$email';
+  static String getDiagnosticPage(String imagePath) =>
+      '$diagnostic?imagepath=$imagePath';
 
 // static String getPacientInfo(int pageId, String page) =>
 //       '$pacientInfo?pageId=$pageId&page=$page';
@@ -94,7 +95,10 @@ class Routes {
     GetPage(
       name: report,
       page: () {
-        return ReportScreen();
+        var email = Get.parameters['email'];
+        return ReportScreen(
+          email: email!,
+        );
       },
       transition: Transition.fadeIn,
     )
