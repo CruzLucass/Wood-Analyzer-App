@@ -30,14 +30,6 @@ class PacientController {
       CollectionReference pacients =
           FirebaseFirestore.instance.collection('pacient');
 
-      // final docRef = pacients.where('email', isEqualTo: email);
-
-      // final id = docRef.get().then((value) => {
-      //       value.docs.forEach((doc) {
-      //         doc.id;
-      //       })
-      //     });
-
       await pacients.doc(email).update({
         'moreInformation': moreInformation,
         'phototype': phototype,
@@ -48,5 +40,19 @@ class PacientController {
     } on FirebaseException catch (e) {
       return e.message;
     }
+  }
+
+  Stream<DocumentSnapshot?> getInfoPacient(String email) {
+    CollectionReference pacients =
+        FirebaseFirestore.instance.collection('pacient');
+    return pacients.doc(email).snapshots();
+  }
+
+//TODO: testar se o método vai listar todos os documentos do profissional
+  CollectionReference<Object?> getAllDiagnostics() {
+    CollectionReference pacients =
+        FirebaseFirestore.instance.collection('pacient');
+    return pacients
+      ..where('professional', isEqualTo: _auth.currentUser!.email).get();
   }
 }

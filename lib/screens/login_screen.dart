@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   SizedBox(
                     height: Dimensions.height160,
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   Center(
                     child: Text(
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         filled: true,
                         fillColor: Colors.white,
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Senha',
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       filled: true,
                       fillColor: Colors.white,
@@ -145,9 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     onChanged: (value) => _password = value,
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
@@ -173,12 +171,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         primary: AppColors.lightColor,
                         fixedSize: Size(
-                          300,
-                          Dimensions.height50,
+                          Dimensions.width350,
+                          50,
                         ),
                       ),
                       child: Text(
@@ -194,7 +192,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          SizedBox(height: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -239,6 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
               )
             ],
           ),
+          SizedBox(height: 40),
         ],
       )),
     );

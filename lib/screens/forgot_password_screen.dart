@@ -28,7 +28,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           children: [
             Container(
               width: double.infinity,
-              height: 300,
+              height: Dimensions.height300,
               decoration: BoxDecoration(
                 color: AppColors.lilasColor,
                 borderRadius: BorderRadius.only(
@@ -58,9 +58,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                   ),
                   Container(
+                    width: 300,
                     alignment: Alignment.center,
                     child: Text(
                       'Recuperação de senha',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.lightColor,
                         fontSize: 34,
@@ -70,7 +72,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    width: 350,
+                    width: 300,
                     child: Text(
                       'Receba uma email para trocar sua senha.',
                       textAlign: TextAlign.center,
@@ -85,7 +87,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Form(
               key: _formKey,
@@ -98,16 +100,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         labelText: 'E-mail',
                         labelStyle: TextStyle(color: AppColors.textColor),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
                       validator: _validarEmail,
                       onSaved: (value) => email = value,
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -146,12 +146,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         primary: AppColors.lilasColor,
                         fixedSize: Size(
-                          Dimensions.width300,
-                          Dimensions.height50,
+                          300,
+                          50,
                         ),
                       ),
                       child: Text(
