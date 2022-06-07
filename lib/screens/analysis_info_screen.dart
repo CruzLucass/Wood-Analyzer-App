@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wood_analyzer/controllers/pacient_controller.dart';
 
 import 'package:wood_analyzer/screens/diagnostic_image.dart';
@@ -100,8 +98,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               labelText: 'Tipo de Pele',
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -125,15 +122,13 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               labelText: 'Fototipo',
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               filled: true,
                               fillColor: Colors.white,
                             ),
-
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'O Fototipo é obrigatório';
@@ -151,16 +146,13 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               labelText: 'Informações Adicionais',
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
-
                               ),
                               filled: true,
                               fillColor: Colors.white,
                             ),
-
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'A Informações Adicionais é obrigatório';
@@ -179,12 +171,10 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 PacientController()
-                                    .updatePacient(moreInformation, phototype,
-                                        skinType, widget.email)
+                                    .updatePacient(moreInformation, phototype, skinType, widget.email)
                                     .then((result) {
                                   if (result == null) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                       content: Text(
                                         'Informações adicionadas com sucesso',
                                         style: TextStyle(fontSize: 20),
@@ -192,8 +182,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                     ));
                                     _formKey.currentState!.reset();
                                   } else {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                       content: Text(
                                         'Ocorreu um erro ao salvar as informações',
                                         style: TextStyle(fontSize: 20),
@@ -211,15 +200,11 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                               fixedSize: Size(
                                 300,
                                 50,
-
                               ),
                             ),
                             child: Text(
                               'Salvar',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.textColor),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textColor),
                             ),
                           ),
                           SizedBox(
