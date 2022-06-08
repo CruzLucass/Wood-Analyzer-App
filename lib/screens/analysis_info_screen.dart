@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:wood_analyzer/controllers/pacient_controller.dart';
@@ -50,10 +49,14 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DiagnosticImageScreen(imagePath: image.path),
+          builder: (context) => DiagnosticImageScreen(
+            imagePath: image.path,
+            email: widget.email,
+          ),
         ),
       );
     } on PlatformException catch (e) {
+      // ignore: avoid_print
       print('Failed to pick image: $e');
     }
   }

@@ -3,19 +3,16 @@ import 'dart:convert';
 class DiagnosticDto {
   final String name;
   final String color;
-  final DateTime date;
 
   DiagnosticDto({
     required this.name,
     required this.color,
-    required this.date,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
       'color': color,
-      'date': date.millisecondsSinceEpoch,
     };
   }
 
@@ -23,7 +20,6 @@ class DiagnosticDto {
     return DiagnosticDto(
       name: map['name'] ?? '',
       color: map['color'] ?? '',
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
     );
   }
 

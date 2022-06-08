@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:wood_analyzer/models/diagnostic_dto.dart';
 import 'package:wood_analyzer/models/pacient_model.dart';
 
 class PacientController {
@@ -34,6 +35,7 @@ class PacientController {
         'moreInformation': moreInformation,
         'phototype': phototype,
         'skinType': skinType,
+        'date': DateTime.now()
       });
 
       return null;
@@ -42,10 +44,29 @@ class PacientController {
     }
   }
 
-  Stream<DocumentSnapshot?> getInfoPacient(String email) {
-    CollectionReference pacients =
-        FirebaseFirestore.instance.collection('pacient');
-    return pacients.doc(email).snapshots();
+  Future<String?> addDiagnosticToPacient(
+      List<DiagnosticDto> diags, String email) async {
+    try {
+      CollectionReference pacients =
+          FirebaseFirestore.instance.collection('pacient');
+
+      await pacients.doc(email).update(
+        {
+          'diagnostics': diags.map((x) => x.toMap()).toList(),
+        },
+      );
+
+      return null;
+    } on FirebaseException catch (e) {
+      return e.message;
+    }
+  }
+
+  Future<DocumentSnapshot> getInfoPacient(String email) async {
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(email)
+        .get();
   }
 
 //TODO: testar se o método vai listar todos os documentos do p
