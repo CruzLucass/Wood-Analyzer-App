@@ -33,6 +33,16 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
   late String urlPhoto;
   File? image;
 
+  List<String> phototypes = [
+    'Pele extremamente branca',
+    'Pele branca',
+    'Pele morena clara',
+    'Pele morena moderada',
+    'Pele morena escura',
+    'Pele negra'
+  ];
+  String? selectedItem = 'Pele extremamente branca';
+
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -96,6 +106,37 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                       child: Column(
                         children: [
                           SizedBox(
+                            height: 60,
+                            child: DropdownButtonFormField<String>(
+                              value: selectedItem,
+                              items: phototypes
+                                  .map(
+                                    (item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              decoration: InputDecoration(
+                                labelText: 'Fototipo',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                              onChanged: (item) =>
+                                  setState(() => phototype = item.toString()),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
                             height: 50,
                             child: TextFormField(
                               keyboardType: TextInputType.text,
@@ -118,34 +159,6 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                 return null;
                               },
                               onChanged: (value) => skinType = value,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            height: 50,
-                            child: TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Fototipo',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'O Fototipo é obrigatório';
-                                } else {
-                                  phototype = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => phototype = value,
                             ),
                           ),
                           SizedBox(

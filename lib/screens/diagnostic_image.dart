@@ -35,7 +35,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
     Diagnostic('Pele fina e desidratada', 'Violeta', false),
     Diagnostic('Pele desidratada', 'Violeta claro', false),
     Diagnostic('Pele muito hidratada', 'Fluorescente brilhante', false),
-    Diagnostic('Ponto negro/ Mancha negra', 'Castanho', false),
+    Diagnostic('Ponto/ Mancha negra', 'Castanho', false),
     Diagnostic('Borbulhas e acne', 'Amarelo e rosa', false),
   ];
 
@@ -146,21 +146,38 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                   child: Card(
                     elevation: 5,
                     child: ListTile(
-                      title: Container(
-                        child: Text(
-                          'Diagnótico: ${listDiagnostic[index].name}',
-                        ),
+                      title: Row(
+                        children: [
+                          Text(
+                            'Diagnótico: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            listDiagnostic[index].name,
+                          ),
+                        ],
                       ),
-                      subtitle: Container(
-                        child: Text(
-                          'Cor: ${listDiagnostic[index].color}',
-                        ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            'Cor: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            listDiagnostic[index].color,
+                          ),
+                        ],
                       ),
                       trailing: IconButton(
                         icon: Icon(
                           listDiagnostic[index].check
                               ? Icons.check_box
                               : Icons.check_box_outline_blank,
+                          color: AppColors.lilasColor,
                         ),
                         onPressed: () {
                           setState(() {

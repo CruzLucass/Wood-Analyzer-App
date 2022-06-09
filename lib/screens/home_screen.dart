@@ -57,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      height: Dimensions.height50,
-                      width: 50,
+                      height: 80,
+                      width: 80,
                       child: Image.asset(
                         'images/logo1.png',
                       ),
@@ -83,7 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.fromLTRB(
+                40,
+                20,
+                40,
+                20,
+              ),
               shrinkWrap: true,
               children: [
                 const Text(
