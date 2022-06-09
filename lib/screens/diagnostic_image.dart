@@ -35,7 +35,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
     Diagnostic('Fina e Desidratada', 'Violeta', false),
     Diagnostic('Desidratada', 'Violeta claro', false),
     Diagnostic('Muito hidratada', 'Fluorescente brilhante', false),
-    Diagnostic('Pontos/ Mancha negra', 'Castanho', false),
+    Diagnostic('Pontos/Mancha negra', 'Castanho', false),
     Diagnostic('Borbulhas e Acne', 'Amarelo e rosa', false),
   ];
 

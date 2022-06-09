@@ -105,89 +105,80 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: 60,
-                            child: DropdownButtonFormField<String>(
-                              value: selectedItem,
-                              items: phototypes
-                                  .map(
-                                    (item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                      ),
+                          DropdownButtonFormField<String>(
+                            value: selectedItem,
+                            items: phototypes
+                                .map(
+                                  (item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
                                     ),
-                                  )
-                                  .toList(),
-                              decoration: InputDecoration(
-                                labelText: 'Fototipo',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                                  ),
+                                )
+                                .toList(),
+                            decoration: InputDecoration(
+                              labelText: 'Fototipo',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              onChanged: (item) => setState(
-                                  () => selectedItem = item.toString()),
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
+                            onChanged: (item) =>
+                                setState(() => selectedItem = item.toString()),
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          SizedBox(
-                            height: 50,
-                            child: TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Tipo de Pele',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: 'Tipo de Pele',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'O Tipo de Pele é obrigatório';
-                                } else {
-                                  skinType = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => skinType = value,
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'O Tipo de Pele é obrigatório';
+                              } else {
+                                skinType = value;
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => skinType = value,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          SizedBox(
-                            height: 50,
-                            child: TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: 'Informações Adicionais',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: 'Informações Adicionais',
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'A Informações Adicionais é obrigatório';
-                                } else {
-                                  moreInformation = value;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) => moreInformation = value,
+                              filled: true,
+                              fillColor: Colors.white,
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'A Informações Adicionais é obrigatório';
+                              } else {
+                                moreInformation = value;
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => moreInformation = value,
                           ),
                           SizedBox(
                             height: 30,

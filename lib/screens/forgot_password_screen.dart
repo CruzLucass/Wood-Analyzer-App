@@ -95,20 +95,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          labelStyle: TextStyle(color: AppColors.textColor),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        labelStyle: TextStyle(color: AppColors.textColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        validator: _validarEmail,
-                        onSaved: (value) => email = value,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       ),
+                      validator: _validarEmail,
+                      onSaved: (value) => email = value,
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(

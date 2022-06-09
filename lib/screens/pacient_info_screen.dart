@@ -60,113 +60,101 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: 'Nome completo',
-                          suffixIcon: Padding(
-                            child: Icon(Icons.person),
-                            padding: EdgeInsets.all(5),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Nome completo',
+                        suffixIcon: Padding(
+                          child: Icon(Icons.person),
+                          padding: EdgeInsets.all(5),
                         ),
-                        validator: _validarNome,
-                        onChanged: (value) => name = value,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
+                      validator: _validarNome,
+                      onChanged: (value) => name = value,
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          suffixIcon: Padding(
-                            child: Icon(Icons.email),
-                            padding: EdgeInsets.all(5),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        suffixIcon: Padding(
+                          child: Icon(Icons.email),
+                          padding: EdgeInsets.all(5),
                         ),
-                        validator: _validarEmail,
-                        onChanged: (value) => email = value,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
+                      validator: _validarEmail,
+                      onChanged: (value) => email = value,
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Idade',
-                          suffixIcon: Padding(
-                            child: Icon(
-                              Icons.perm_contact_calendar_sharp,
-                            ),
-                            padding: EdgeInsets.all(5),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Idade',
+                        suffixIcon: Padding(
+                          child: Icon(
+                            Icons.perm_contact_calendar_sharp,
                           ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
+                          padding: EdgeInsets.all(5),
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'A idade é obrigatório';
-                          } else {
-                            age = int.parse(value);
-                          }
-                          return null;
-                        },
-                        onSaved: (value) =>
-                            value == "" ? age = 0 : age = int.parse(value!),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'A idade é obrigatório';
+                        } else {
+                          age = int.parse(value);
+                        }
+                        return null;
+                      },
+                      onSaved: (value) =>
+                          value == "" ? age = 0 : age = int.parse(value!),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        inputFormatters: [
-                          MaskTextInputFormatter(mask: "(##) # ####-####"),
-                        ],
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          labelText: 'Celular',
-                          suffixIcon: Padding(
-                            child: Icon(
-                              Icons.phone,
-                            ),
-                            padding: EdgeInsets.all(5),
+                    TextFormField(
+                      inputFormatters: [
+                        MaskTextInputFormatter(mask: "(##) # ####-####"),
+                      ],
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        labelText: 'Celular',
+                        suffixIcon: Padding(
+                          child: Icon(
+                            Icons.phone,
                           ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
+                          padding: EdgeInsets.all(5),
                         ),
-                        validator: _validarCelular,
-                        onChanged: (value) => mobilephone = value,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
+                      validator: _validarCelular,
+                      onChanged: (value) => mobilephone = value,
                     ),
                     SizedBox(
                       height: 30,

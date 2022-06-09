@@ -88,68 +88,61 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 50,
-                    child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          suffixIcon: Padding(
-                            child: Icon(Icons.email),
-                            padding: EdgeInsets.all(5),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                        validator: _validarEmail,
-                        onSaved: (value) => _email = value),
-                  ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    height: 50,
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: !_passwordVisible,
+                  TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        labelText: 'Senha',
+                        labelText: 'E-mail',
+                        suffixIcon: Padding(
+                          child: Icon(Icons.email),
+                          padding: EdgeInsets.all(5),
+                        ),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                         filled: true,
                         fillColor: Colors.white,
-                        suffixIcon: Padding(
-                          child: IconButton(
-                            icon: Icon(
-                              _passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                          ),
-                          padding: EdgeInsets.all(5),
-                        ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'A senha é obrigatória';
-                        } else {
-                          _password = value;
-                        }
-                        return null;
-                      },
-                      onChanged: (value) => _password = value,
+                      validator: _validarEmail,
+                      onSaved: (value) => _email = value),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: !_passwordVisible,
+                    decoration: InputDecoration(
+                      labelText: 'Senha',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      suffixIcon: Padding(
+                        child: IconButton(
+                          icon: Icon(
+                            _passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
+                        padding: EdgeInsets.all(5),
+                      ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'A senha é obrigatória';
+                      } else {
+                        _password = value;
+                      }
+                      return null;
+                    },
+                    onChanged: (value) => _password = value,
                   ),
                   SizedBox(height: 20),
                   Padding(
