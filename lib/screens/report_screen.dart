@@ -678,79 +678,83 @@ Future<void> _createPDF(
                   height: 20,
                 ),
                 pw.ListView.builder(
-                    itemCount: pacient.diagnostics!.length,
-                    itemBuilder: (context, index) {
-                      return pw.Column(
-                        children: [
-                          pw.Padding(
-                            padding: const pw.EdgeInsets.only(left: 20),
-                            child: pw.Row(
-                              mainAxisAlignment: pw.MainAxisAlignment.start,
-                              children: [
-                                pw.Text(
-                                  'Diagnótico: ',
-                                  style: pw.TextStyle(
-                                    fontWeight: pw.FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                  itemCount: pacient.diagnostics!.length,
+                  itemBuilder: (context, index) {
+                    return pw.Column(
+                      children: [
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.only(left: 20),
+                          child: pw.Row(
+                            mainAxisAlignment: pw.MainAxisAlignment.start,
+                            children: [
+                              pw.Text(
+                                'Diagnótico: ',
+                                style: pw.TextStyle(
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontSize: 18,
                                 ),
-                                pw.Text(
-                                  pacient.diagnostics![index].name,
-                                  style: pw.TextStyle(
-                                    fontSize: 18,
-                                  ),
+                              ),
+                              pw.Text(
+                                pacient.diagnostics![index].name,
+                                style: pw.TextStyle(
+                                  fontSize: 18,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          pw.Padding(
-                            padding: const pw.EdgeInsets.only(left: 20),
-                            child: pw.Row(
-                              mainAxisAlignment: pw.MainAxisAlignment.start,
-                              children: [
-                                pw.Text(
-                                  'Cor: ',
-                                  style: pw.TextStyle(
-                                    fontWeight: pw.FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                        ),
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.only(left: 20),
+                          child: pw.Row(
+                            mainAxisAlignment: pw.MainAxisAlignment.start,
+                            children: [
+                              pw.Text(
+                                'Cor: ',
+                                style: pw.TextStyle(
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontSize: 18,
                                 ),
-                                pw.Text(
-                                  pacient.diagnostics![index].color,
-                                  style: pw.TextStyle(
-                                    fontSize: 18,
-                                  ),
+                              ),
+                              pw.Text(
+                                pacient.diagnostics![index].color,
+                                style: pw.TextStyle(
+                                  fontSize: 18,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          pw.SizedBox(
-                            height: 20,
-                          ),
-                          pw.Padding(
-                            padding: const pw.EdgeInsets.only(left: 20),
-                            child: pw.Row(
-                              mainAxisAlignment: pw.MainAxisAlignment.start,
-                              children: [
-                                pw.Text(
-                                  'Email Esteticista: ',
-                                  style: pw.TextStyle(
-                                    fontWeight: pw.FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                pw.Text(
-                                  pacient.professional!,
-                                  style: pw.TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
+                        ),
+                        pw.SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                pw.SizedBox(
+                  height: 40,
+                ),
+                pw.Padding(
+                  padding: const pw.EdgeInsets.only(left: 20),
+                  child: pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        'Email Esteticista: ',
+                        style: pw.TextStyle(
+                          fontWeight: pw.FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      pw.Text(
+                        pacient.professional!,
+                        style: pw.TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 pw.SizedBox(
                   height: 50,
                 ),

@@ -135,7 +135,8 @@ class _PacientInfoScreenState extends State<PacientInfoScreen> {
                           }
                           return null;
                         },
-                        onChanged: (value) => age = int.parse(value),
+                        onSaved: (value) =>
+                            value == "" ? age = 0 : age = int.parse(value!),
                       ),
                     ),
                     SizedBox(

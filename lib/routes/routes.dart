@@ -39,33 +39,35 @@ class Routes {
     GetPage(
       name: login,
       page: () => LoginScreen(),
+      transition: Transition.upToDown,
     ),
     GetPage(
       name: signup,
       page: () {
         return SignupScreen();
       },
+      transition: Transition.leftToRightWithFade,
     ),
     GetPage(
       name: forgotPassword,
       page: () {
         return ForgotPasswordScreen();
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: initial,
       page: () {
         return HomeScreen();
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: pacientInfo,
       page: () {
         return PacientInfoScreen();
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: analysisInfo,
@@ -75,7 +77,7 @@ class Routes {
           email: email!,
         );
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: diagnostic,
@@ -87,7 +89,7 @@ class Routes {
           email: email!,
         );
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: report,
@@ -99,7 +101,7 @@ class Routes {
           imagePath: imagePath!,
         );
       },
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
     )
   ];
 }
