@@ -31,12 +31,12 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
   List<Diagnostic> listDiagnostic = [
     Diagnostic('Epiderme espessa', 'Branco fluorescente', false),
     Diagnostic('Células mortas', 'Pontos Brancos', false),
-    Diagnostic('Pele saudável', 'Azul e Branco', false),
-    Diagnostic('Pele fina e desidratada', 'Violeta', false),
-    Diagnostic('Pele desidratada', 'Violeta claro', false),
-    Diagnostic('Pele muito hidratada', 'Fluorescente brilhante', false),
-    Diagnostic('Ponto/ Mancha negra', 'Castanho', false),
-    Diagnostic('Borbulhas e acne', 'Amarelo e rosa', false),
+    Diagnostic('Saudável', 'Azul e Branco', false),
+    Diagnostic('Fina e Desidratada', 'Violeta', false),
+    Diagnostic('Desidratada', 'Violeta claro', false),
+    Diagnostic('Muito hidratada', 'Fluorescente brilhante', false),
+    Diagnostic('Pontos/ Mancha negra', 'Castanho', false),
+    Diagnostic('Borbulhas e Acne', 'Amarelo e rosa', false),
   ];
 
   void _getAllDiagnostics() {
