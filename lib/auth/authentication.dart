@@ -10,6 +10,7 @@ class Authentication {
     required String email,
     required String password,
     required String name,
+    required String mobilephone,
   }) async {
     try {
       CollectionReference users =
@@ -19,9 +20,17 @@ class Authentication {
             email: email,
             password: password,
           )
-          .then((data) => {
-                users.doc(data.user!.uid).set({'name': name, 'email': email})
-              });
+          .then(
+            (data) => {
+              users.doc(data.user!.uid).set(
+                {
+                  'name': name,
+                  'email': email,
+                  'mobilephone': mobilephone,
+                },
+              ),
+            },
+          );
 
       return null;
     } on FirebaseAuthException catch (e) {

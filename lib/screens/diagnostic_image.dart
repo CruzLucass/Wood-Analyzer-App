@@ -3,22 +3,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'package:wood_analyzer/controllers/pacient_controller.dart';
 import 'package:wood_analyzer/models/diagnostic.dart';
+import 'package:wood_analyzer/models/diagnostic_dto.dart';
+import 'package:wood_analyzer/routes/routes.dart';
 import 'package:wood_analyzer/utils/app_colors.dart';
 import 'package:wood_analyzer/utils/dimensions.dart';
 
-import 'dart:typed_data';
-import 'package:flutter/services.dart' show rootBundle;
-
-import 'package:syncfusion_flutter_pdf/pdf.dart';
-import 'package:wood_analyzer/pdf_helper/mobile.dart';
-
 class DiagnosticImageScreen extends StatefulWidget {
   final String imagePath;
+  final String email;
   const DiagnosticImageScreen({
     Key? key,
     required this.imagePath,
+    required this.email,
   }) : super(key: key);
 
   @override
@@ -35,17 +35,52 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
     Diagnostic('Pele fina e desidratada', 'Violeta', false),
     Diagnostic('Pele desidratada', 'Violeta claro', false),
     Diagnostic('Pele muito hidratada', 'Fluorescente brilhante', false),
-    Diagnostic('Ponto negro/ Mancha negra', 'Castanho', false),
+    Diagnostic('Ponto/ Mancha negra', 'Castanho', false),
     Diagnostic('Borbulhas e acne', 'Amarelo e rosa', false),
   ];
+
+  void _getAllDiagnostics() {
+    List<DiagnosticDto> diags = [];
+    for (var item in listDiagnostic) {
+      if (item.check) {
+        diags.add(
+          DiagnosticDto(
+            name: item.name,
+            color: item.color,
+          ),
+        );
+      }
+    }
+
+    PacientController().addDiagnosticToPacient(diags, widget.email);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: countListTile > 0
           ? FloatingActionButton(
-              onPressed: () => _createPDF(widget.imagePath),
-              child: Icon(Icons.print),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+                _getAllDiagnostics();
+                Get.offNamed(
+                  Routes.getReportPage(
+                    widget.email,
+                    widget.imagePath,
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.save,
+                color: AppColors.mainColor,
+              ),
+              backgroundColor: AppColors.lightColor,
               tooltip: 'Finalizar',
             )
           : Container(),
@@ -105,35 +140,56 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      listDiagnostic[index].check = !listDiagnostic[index].check;
-                      listDiagnostic[index].check ? countListTile++ : countListTile--;
-
+                      listDiagnostic[index].check =
+                          !listDiagnostic[index].check;
+                      listDiagnostic[index].check
+                          ? countListTile++
+                          : countListTile--;
                     });
                   },
                   child: Card(
                     elevation: 5,
                     child: ListTile(
-                      title: Container(
-                        child: Text(
-                          'Diagnótico: ${listDiagnostic[index].name}',
-                        ),
+                      title: Row(
+                        children: [
+                          Text(
+                            'Diagnótico: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            listDiagnostic[index].name,
+                          ),
+                        ],
                       ),
-                      subtitle: Container(
-                        child: Text(
-                          'Cor: ${listDiagnostic[index].color}',
-                        ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            'Cor: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            listDiagnostic[index].color,
+                          ),
+                        ],
                       ),
                       trailing: IconButton(
                         icon: Icon(
                           listDiagnostic[index].check
                               ? Icons.check_box
                               : Icons.check_box_outline_blank,
+                          color: AppColors.lilasColor,
                         ),
                         onPressed: () {
                           setState(() {
-                            listDiagnostic[index].check = !listDiagnostic[index].check;
-                            listDiagnostic[index].check ? countListTile++ : countListTile--;
-
+                            listDiagnostic[index].check =
+                                !listDiagnostic[index].check;
+                            listDiagnostic[index].check
+                                ? countListTile++
+                                : countListTile--;
                           });
                         },
                       ),
@@ -147,32 +203,4 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
       ),
     );
   }
-
-  Future<void> _createPDF(String imagePath) async {
-    PdfDocument document = PdfDocument();
-    final page = document.pages.add();
-
-    page.graphics.drawString(
-      'Welcome to PDF Successful',
-      PdfStandardFont(PdfFontFamily.helvetica, 30),
-    );
-
-    page.graphics.drawImage(
-      PdfBitmap(
-        await _readImageData(imagePath),
-      ),
-      Rect.fromLTWH(0, 100, 440, 550),
-    );
-
-    List<int> bytes = document.save();
-    document.dispose();
-
-    saveAndLaunchFile(bytes, 'Output.pdf');
-  }
-}
-
-Future<Uint8List> _readImageData(String name) async {
-  File imagefile = File(name);
-  final data = await imagefile.readAsBytes();
-  return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 }

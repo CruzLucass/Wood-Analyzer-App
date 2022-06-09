@@ -29,14 +29,10 @@ class Routes {
   static String getInitial() => initial;
   static String getPacientInfo() => pacientInfo;
   static String getAnalysisInfo(String email) => '$analysisInfo?email=$email';
-  static String getReportPage() => report;
-  static String getDiagnosticPage(String imagePath) => '$diagnostic?imagepath=$imagePath';
-
-// static String getPacientInfo(int pageId, String page) =>
-//       '$pacientInfo?pageId=$pageId&page=$page';
-//   static String getAnalysisInfo(int pageId, String page) =>
-//       '$analysisInfo?pageId=$pageId&page=$page';
-//   static String getReportPage() => '$report';
+  static String getReportPage(String email, String imagePath) =>
+      '$report?email=$email&imagepath=$imagePath';
+  static String getDiagnosticPage(String imagePath, String email) =>
+      '$diagnostic?imagepath=$imagePath&email=$email';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
@@ -85,8 +81,10 @@ class Routes {
       name: diagnostic,
       page: () {
         var imagePath = Get.parameters['imagepath'];
+        var email = Get.parameters['email'];
         return DiagnosticImageScreen(
           imagePath: imagePath!,
+          email: email!,
         );
       },
       transition: Transition.fadeIn,
@@ -94,7 +92,12 @@ class Routes {
     GetPage(
       name: report,
       page: () {
-        return ReportScreen();
+        var imagePath = Get.parameters['imagepath'];
+        var email = Get.parameters['email'];
+        return ReportScreen(
+          email: email!,
+          imagePath: imagePath!,
+        );
       },
       transition: Transition.fadeIn,
     )
