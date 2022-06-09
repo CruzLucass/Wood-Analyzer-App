@@ -29,7 +29,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
   final _formKey = GlobalKey<FormState>();
   late String moreInformation;
   late String skinType;
-  late String phototype;
+  //late String phototype = '';
   late String urlPhoto;
   File? image;
 
@@ -41,7 +41,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
     'Pele morena escura',
     'Pele negra'
   ];
-  String? selectedItem = 'Pele extremamente branca';
+  String selectedItem = 'Pele extremamente branca';
 
   Future pickImage(ImageSource source) async {
     try {
@@ -129,8 +129,8 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                 filled: true,
                                 fillColor: Colors.white,
                               ),
-                              onChanged: (item) =>
-                                  setState(() => phototype = item.toString()),
+                              onChanged: (item) => setState(
+                                  () => selectedItem = item.toString()),
                             ),
                           ),
                           SizedBox(
@@ -200,7 +200,7 @@ class _AnalysisInfoScreen extends State<AnalysisInfoScreen> {
                                 PacientController()
                                     .updatePacient(
                                   moreInformation,
-                                  phototype,
+                                  selectedItem,
                                   skinType,
                                   widget.email,
                                 )

@@ -95,11 +95,11 @@ class _ReportScreenState extends State<ReportScreen> {
                   return Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          child: Wrap(
                             children: [
                               Text(
                                 'Nome: ',
@@ -122,8 +122,7 @@ class _ReportScreenState extends State<ReportScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          child: Wrap(
                             children: [
                               Text(
                                 'Email: ',
@@ -242,8 +241,7 @@ class _ReportScreenState extends State<ReportScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          child: Wrap(
                             children: [
                               Text(
                                 'Mais Informações: ',
@@ -349,6 +347,29 @@ class _ReportScreenState extends State<ReportScreen> {
                               ],
                             );
                           },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Wrap(
+                            children: [
+                              Text(
+                                'Email Esteticista: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                data['professional'],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         TitleWidget(text: 'Imagem')
                       ],
@@ -706,11 +727,32 @@ Future<void> _createPDF(
                           pw.SizedBox(
                             height: 20,
                           ),
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.only(left: 20),
+                            child: pw.Row(
+                              mainAxisAlignment: pw.MainAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  'Email Esteticista: ',
+                                  style: pw.TextStyle(
+                                    fontWeight: pw.FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                pw.Text(
+                                  pacient.professional!,
+                                  style: pw.TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       );
                     }),
                 pw.SizedBox(
-                  height: 30,
+                  height: 50,
                 ),
                 pw.Text(
                   'Imagem',

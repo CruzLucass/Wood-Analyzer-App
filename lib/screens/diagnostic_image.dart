@@ -76,7 +76,11 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                   ),
                 );
               },
-              child: Icon(Icons.save),
+              child: Icon(
+                Icons.save,
+                color: AppColors.mainColor,
+              ),
+              backgroundColor: AppColors.lightColor,
               tooltip: 'Finalizar',
             )
           : Container(),
