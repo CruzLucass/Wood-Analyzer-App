@@ -287,7 +287,7 @@ class _ReportScreenState extends State<ReportScreen> {
                           height: 20,
                         ),
                         const TitleWidget(
-                          text: 'Diagnóticos da imagem',
+                          text: 'Diagnósticos da imagem',
                         ),
                         SizedBox(
                           height: 20,
@@ -305,7 +305,7 @@ class _ReportScreenState extends State<ReportScreen> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Diagnótico: ',
+                                        'Diagnóstico: ',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -403,9 +403,9 @@ class _ReportScreenState extends State<ReportScreen> {
                     Get.offNamed(Routes.pacientInfo);
                   },
                   icon: Icon(
-                    Icons.repeat,
+                    Icons.add,
                   ),
-                  label: Text('Voltar'),
+                  label: Text('Novo'),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -668,7 +668,7 @@ Future<void> _createPDF(
                   height: 20,
                 ),
                 pw.Text(
-                  'Diagnóticos da imagem',
+                  'Diagnósticos da imagem',
                   style: pw.TextStyle(
                     fontWeight: pw.FontWeight.bold,
                     fontSize: 20,
@@ -688,7 +688,7 @@ Future<void> _createPDF(
                             mainAxisAlignment: pw.MainAxisAlignment.start,
                             children: [
                               pw.Text(
-                                'Diagnótico: ',
+                                'Diagnóstico: ',
                                 style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold,
                                   fontSize: 18,

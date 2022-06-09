@@ -121,7 +121,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
             ),
             child: Center(
               child: Text(
-                'Selecione os diagnóticos da imagem: ',
+                'Selecione os diagnósticos da imagem: ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: Dimensions.font16,
@@ -153,7 +153,7 @@ class _DiagnosticImageScreenState extends State<DiagnosticImageScreen> {
                       title: Row(
                         children: [
                           Text(
-                            'Diagnótico: ',
+                            'Diagnóstico: ',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
